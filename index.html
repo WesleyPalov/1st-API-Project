@@ -6,14 +6,19 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-<<<<<<< HEAD
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
     <title>Colorado Today</title>
   </head>
   <body>
@@ -92,36 +97,107 @@
                   </div>
                 </div>
                 <section class="container my-5 bg-dark">
-                  <div class="row">
-                    <div class="card-body">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun"></i>
-                      <p class="card-text">Temp:</p>
-                      <p class="card-text">Humidity:</p>
+                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                      <div class="card">
+                        <img src="" class="card-img-top" alt="" />
+                        <div class="card-body">
+                          <h6 class="card-title">
+                            Temperature:
+                            <p class="temp-data-zero forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Humidity:
+                            <p class="humidity-data-zero forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Chance of rain:
+                            <p
+                              class="precipitation-data-zero forecast-text"
+                            ></p>
+                          </h6>
+                        </div>
+                      </div>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun"></i>
-                      <p class="card-text">Temp:</p>
-                      <p class="card-text">Humidity:</p>
+                    <div class="col">
+                      <div class="card">
+                        <img src="" class="card-img-top" alt="" />
+                        <div class="card-body">
+                          <h6 class="card-title">
+                            Temperature:
+                            <p class="temp-data-one forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Humidity:
+                            <p class="humidity-data-one forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Chance of rain:
+                            <p class="precipitation-data-one forecast-text"></p>
+                          </h6>
+                        </div>
+                      </div>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun"></i>
-                      <p class="card-text">Temp:</p>
-                      <p class="card-text">Humidity:</p>
+                    <div class="col">
+                      <div class="card">
+                        <img src="" class="card-img-top" alt="" />
+                        <div class="card-body">
+                          <h6 class="card-title">
+                            Temperature:
+                            <p class="temp-data-two forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Humidity:
+                            <p class="humidity-data-two forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Chance of rain:
+                            <p class="precipitation-data-two forecast-text"></p>
+                          </h6>
+                        </div>
+                      </div>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun"></i>
-                      <p class="card-text">Temp:</p>
-                      <p class="card-text">Humidity:</p>
+                    <div class="col">
+                      <div class="card">
+                        <img src="" class="card-img-top" alt="" />
+                        <div class="card-body">
+                          <h6 class="card-title">
+                            Temperature:
+                            <p class="temp-data-three forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Humidity:
+                            <p class="humidity-data-three forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Chance of rain:
+                            <p
+                              class="precipitation-data-three forecast-text"
+                            ></p>
+                          </h6>
+                        </div>
+                      </div>
                     </div>
-                    <div class="card-body">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun"></i>
-                      <p class="card-text">Temp:</p>
-                      <p class="card-text">Humidity:</p>
+                    <div class="col">
+                      <div class="card">
+                        <img src="" class="card-img-top" alt="" />
+                        <div class="card-body">
+                          <h6 class="card-title">
+                            Temperature:
+                            <p class="temp-data-four forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Humidity:
+                            <p class="humidity-data-four forecast-text"></p>
+                          </h6>
+                          <h6 class="card-title">
+                            Chance of rain:
+                            <p
+                              class="precipitation-data-four forecast-text"
+                            ></p>
+                          </h6>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -130,53 +206,33 @@
           </section>
         </div>
         <div class="row">
-          <section id="mapContainer" class="col-3">
-            <h1>m</h1>
-          </section>
+          <section id="mapContainer" class="col-3"></section>
           <section id="newsContainer" class="col-9">
-            <h1>n</h1>
+            <div id="newsHeader">
+              <h2>News Articles</h2>
+              <div class="dropdown">
+                <button class="dropbtn">Dropdown</button>
+                <div class="dropdown-content">
+                  <button>Business</button>
+                  <button>Entertainment</button>
+                  <button>Environment</button>
+                  <button>Food</button>
+                  <button>Health</button>
+                  <button>Politics</button>
+                  <button>Science</button>
+                  <button>Sports</button>
+                  <button>Technology</button>
+                  <button>Top</button>
+                  <button>World</button>
+                </div>
+              </div>
+              <button id="savedLinksButton">Show Saved Links</button>
+            </div>
+            <div class="savedLinks"></div>
+            <div class="newsArticles"></div>
           </section>
         </div>
       </main>
-=======
-    <title>Five Day Weather Forecast</title>
-  </head>
-  <body>
-    <section class="container-fluid">
-      <div class="row">
-        <header class="col-12">
-          <h1>Weather API Challenge</h1>
-        </header>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-4 col-lg-3">
-          <h1>search and saves here</h1>
-          <form id="search-form" class="mb-2">
-            <div class="form-group">
-              <input
-                id="search-input"
-                class="form-input w-100"
-                type="text"
-                placeholder="Search"
-              />
-            </div>
-            <div class="form-group">
-              <button id="searchBtn" class="btn btn-info btn-block">
-                Search Weather
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-12 col-md-8 col-lg-9">
-          <div class="boder border-dark">
-            <h1>Today's weather here</h1>
-          </div>
-          <div class="row">
-            <div class="col-12">weather cards here</div>
-          </div>
-        </div>
-      </div>
->>>>>>> main
     </section>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
