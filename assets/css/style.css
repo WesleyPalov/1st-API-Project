@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  height: 100vh;
+}
+
+header {
+  background-color: blue;
+}
+
+main {
+  border: 5px solid red;
+}
+
+#weatherContainer {
+  border: 5px solid green;
+}
+#mapContainer {
+  border: 5px solid blue;
+}
+#newsContainer {
+  border: 5px solid yellow;
+}
