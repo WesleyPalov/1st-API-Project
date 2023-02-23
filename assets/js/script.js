@@ -1,6 +1,6 @@
 //Wesley's CodeBase
 // Easy access to elements
-var searchHistoryList = $('#search-history-list');
+var searchHistoryList = $("#search-history-list");
 var searchCityInput = $("#search-city");
 var searchCityButton = $("#search-city-button");
 var clearHistoryButton = $("#clear-history");
@@ -17,9 +17,7 @@ var weatherContent = $("#weather-content");
 var currentDate = moment().format('L');
 $("#current-date").text("(" + currentDate + ")");
 
-
 console.log(currentDate);
-
 // Get access to the OpenWeather API
 var urlWeather =  "https://api.openweathermap.org/data/2.5/weather?q=";
 var APIkey = "5806b5e472a87f66457f7aa46221f33b"
@@ -33,6 +31,8 @@ searchCityButton.on("click", function (event){
    console.log(searchValue);
     currentWeatherRequest(searchValue);
    locStor.push(searchValue);
+   weatherContent.removeClass("hide");
+   clearHistoryButton.removeClass("hide");
    toLocalStore();
    renderCities();
 })
@@ -66,7 +66,7 @@ function currentWeatherRequest(searchValue) {
             method: "GET"
         }).then(function(response){
              console.log("UV call: ")
-             console.log(response);
+          
             UVindex.text(response.value);
         });
 }
@@ -98,8 +98,29 @@ searchHistoryList.append(finalTem);
 }
 fromLocalStore()
 renderCities();
+clearHistoryButton.on("click", function(){
+    // Empty out the  city list array
+    locStor = [];
+    console.log(locStor);
+    renderCities();
+    // Update city list history in local storage
+    //listArray();
+    
+  //  $(this).addClass("hide");
+})
+console.log(locStor);
 
+// Clicking on a button in the search history sidebar
+// will populate the dashboard with info on that city
+searchHistoryList.on("click","btn.btn-info", function(event) {
+    console.log("dfd")
+     console.log($(this).data("value"));
+    var value = $(this).data("value");
+    //currentConditionsRequest(value);
+   // searchHistory(value); 
 
+});
+console.log(tempTop);
 
 
 
