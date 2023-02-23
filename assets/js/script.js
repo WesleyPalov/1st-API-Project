@@ -1,27 +1,103 @@
 //Wesley's CodeBase
-var searchFieldEl = document.querySelector("#search-input");
-var searchBtnEl = document.querySelector("#searchBtn");
-var weatherUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-var weatherApiKey = "&appid=bb7d0040d30c625c65c4836bd0556ffe";
+// Easy access to elements
+var searchHistoryList = $('#search-history-list');
+var searchCityInput = $("#search-city");
+var searchCityButton = $("#search-city-button");
+var clearHistoryButton = $("#clear-history");
+var currentCity = $("#current-city");
+var currentTemp = $("#current-temp");
+var currentHumidity = $("#current-humidity");
+var currentWindSpeed = $("#current-wind-speed");
+var UVindex = $("#uv-index");
+// storing local storage 
+var locStor;
 
-$(searchBtnEl).on("click", function (event) {
-  event.preventDefault();
+var weatherContent = $("#weather-content");
 
-  var userSearch =
-    weatherUrl + searchFieldEl.value + "&limit=1" + weatherApiKey;
-  if (!searchFieldEl.value) {
-    console.log("please search a city");
-  } else {
-    fetch(userSearch)
-      .then(function (response) {
-        return response.json();
-      })
+var currentDate = moment().format('L');
+$("#current-date").text("(" + currentDate + ")");
 
-      .then(function (data) {
-        console.log(data);
-      });
-  }
-});
+
+console.log(currentDate);
+
+// Get access to the OpenWeather API
+var urlWeather =  "https://api.openweathermap.org/data/2.5/weather?q=";
+var APIkey = "5806b5e472a87f66457f7aa46221f33b"
+
+searchCityButton.on("click", function (event){
+    event.preventDefault();
+    var searchValue = searchCityInput.val().trim();
+    if (searchValue === "") {
+    alert("Please enter City name know the current weather");
+   } else
+   console.log(searchValue);
+    currentWeatherRequest(searchValue);
+   locStor.push(searchValue);
+   toLocalStore();
+   renderCities();
+})
+
+function currentWeatherRequest(searchValue) {
+
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial&appid=" + APIkey;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+        currentCity.text(response.name);
+        currentCity.append("<small class='text-muted' id='current-date'>");
+        $("#current-date").text("(" + currentDate + ")");
+        currentCity.append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='" + response.weather[0].main + "' />" )
+        currentTemp.text(response.main.temp);
+        currentTemp.append("&deg;F");
+        currentHumidity.text(response.main.humidity + "%");
+        currentWindSpeed.text(response.wind.speed + "MPH");
+
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        
+
+        var UVurl = "https://api.openweathermap.org/data/2.5/uvi?&lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
+        // AJAX Call for UV index
+        $.ajax({
+            url: UVurl,
+            method: "GET"
+        }).then(function(response){
+             console.log("UV call: ")
+             console.log(response);
+            UVindex.text(response.value);
+        });
+}
+)}; 
+
+function toLocalStore(){
+localStorage.setItem("cityName",  JSON.stringify(locStor));
+}
+
+function fromLocalStore() {
+
+    var arr = localStorage.getItem("cityName");
+     if(arr) {
+        locStor = JSON.parse(arr)
+     }
+     else {
+        locStor = [];
+     }
+}
+function renderCities() {
+    var tempTop = '<li class="list-group-item"> <button class="btn btn-info city-btn"  type="button" >'
+    var tempBut = "</button> </li>"
+    searchHistoryList.empty()
+for (let i = 0; i < locStor.length; i++) {
+    var city = locStor[i];
+var finalTem = tempTop + city + tempBut;
+searchHistoryList.append(finalTem);
+}
+}
+fromLocalStore()
+renderCities();
 
 
 
