@@ -143,6 +143,8 @@ function getCategory() {
     "https://newsdata.io/api/1/news?apikey=pub_177975100b458a5296d87e0ed7210ba464f97&country=us&category=" +
     category;
   getNewsApi(requestUrlNews);
+
+  
 }
 
 function getNewsApi(requestUrlNews) {
@@ -153,6 +155,22 @@ function getNewsApi(requestUrlNews) {
     .then(function (data) {
       console.log(data);
     });
+}
+
+function printResults(resultObj) {
+  var newsCard = $("<div></div>");
+  newsCard.addClass('bg-light', 'text-dark', 'mb-3', 'p-3');
+
+  var newsBody = $("<div></div>");
+  newsBody.addClass('news-body');
+  newsCard.append(newsBody);
+
+  var newsTitle = $("<h3></h3>");
+  newsTitle.text(resultObj.title);
+
+  var bodyContentNews = $("<p></p>");
+  
+
 }
 
 //Thomas' codeBase
