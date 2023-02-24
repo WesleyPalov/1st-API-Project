@@ -197,9 +197,8 @@ var trafficFetchUrl =
   "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
 var trafficTL = trafficFetchUrl + "426/776" + mapKey;
 var trafficTR = trafficFetchUrl + "427/776" + mapKey;
-
-fetchTrafficTile(trafficTL);
-fetchTrafficTile(trafficTR);
+var trafficBL = trafficFetchUrl + "426/777" + mapKey;
+var trafficBR = trafficFetchUrl + "427/777" + mapKey;
 
 // fetch(trafficTL)
 //   .then(function (response) {
@@ -212,3 +211,51 @@ fetchTrafficTile(trafficTR);
 //     trafficTile.classList.add("overlayTraffic");
 //     topRowEl.appendChild(trafficTile);
 //   });
+
+fetch(trafficTL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    console.log(data);
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficTR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    console.log(data);
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTR");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    console.log(data);
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    console.log(data);
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBR");
+    mapContainerEl.appendChild(mapTile);
+  });

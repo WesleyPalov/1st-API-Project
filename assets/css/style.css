@@ -233,8 +233,26 @@ main {
   padding-bottom: 20px;
 }
 
-.overlayTraffic {
+.overlayTrafficTL {
   position: absolute;
   top: 0px;
   left: 0px;
+}
+
+.overlayTrafficTR {
+  position: absolute;
+  top: 0px;
+  left: 256px;
+}
+
+.overlayTrafficBL {
+  position: absolute;
+  top: 256px;
+  left: 0px;
+}
+
+.overlayTrafficBR {
+  position: absolute;
+  top: 256px;
+  left: 256px;
 }
