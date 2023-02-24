@@ -153,8 +153,13 @@ function getNewsApi(requestUrlNews) {
       return response.json();
     })
     .then(function (data) {
+
       console.log(data);
     });
+
+    for (var i = 0; i < data.results.length; i++) {
+      printResults(data.results[i]);
+    }
 }
 
 function printResults(resultObj) {
@@ -170,7 +175,6 @@ function printResults(resultObj) {
 
   var bodyContentNews = $("<p></p>");
   
-
 }
 
 //Thomas' codeBase
