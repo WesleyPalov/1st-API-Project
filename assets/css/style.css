@@ -23,8 +23,9 @@ body {
   /* background: linear-gradient(0deg, var(--light3) 0%, var(--light1) 100%); */
 }
 
-.darkMode {
-  background: linear-gradient(0deg, var(--light2) 0%, var(--light1) 100%);
+[data-theme="dark"] {
+  --font-color: #fefefe;
+  background: linear-gradient(0deg, black 0%, var(--dark4) 100%);
 }
 
 .container-fluid {
@@ -39,23 +40,146 @@ header {
   min-height: 100px;
   justify-content: space-between;
   padding: 10px;
+  padding-left: 15rem;
+}
+
+.fa-mug-hot {
+  margin-right: 10px;
+}
+
+.dropDown {
+  position: relative;
+  display: inline-block;
 }
 
 #settingsButton {
   border: none;
-  background: rgba(0, 0, 0, 0);
+  background: none;
+  outline: none;
+}
+
+.dropButton {
+  border: 2px solid black;
+  border-radius: 23px;
+  padding: 2px 20px 2px 20px;
+  font-size: 16px;
 }
 
 .fa-gear {
   padding: 5px;
 }
 
+/* .dropButton > option {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  z-index: 1;
+  color: black;
+} */
+
+/* .dropButton option {
+  padding: 10px 16px;
+  width: 100%;
+  border: none;
+  text-decoration: none;
+  display: block;
+} */
+
+.dropDownContent {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  z-index: 1;
+  color: black;
+}
+
+.dropDownContent p {
+  padding: 10px 16px;
+  width: 100%;
+  border: none;
+  text-decoration: none;
+  display: block;
+}
+
+/* .dropDownContent button:hover {
+  background-color: #ddd;
+} */
+
+.dropDown:hover .dropDownContent {
+  display: block;
+}
+
+/* .dropDown:hover .dropButton {
+  background-color: var(--light3);
+} */
+
+.switch {
+  height: 100px;
+  position: fixed;
+  right: 50px;
+  top: 50px;
+}
+
+.themeSwitch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.themeSwitch input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #2b2b2b;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* .darkMode {
+  background: linear-gradient(0deg, var(--light2) 0%, var(--light1) 100%);
+}
+function myFunction() {document.body.classList.toggle("dark-mode");}  */
+
 main {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-  padding-left: 25rem;
-  padding-right: 25rem;
+  padding-left: 15rem;
+  padding-right: 15rem;
   padding-bottom: 20px;
 }
 
@@ -135,7 +259,7 @@ main {
   justify-content: space-evenly;
   margin-left: 0px;
   margin-right: 0px;
-  padding: 10px;
+  padding: 5px;
 }
 
 .card-body {
@@ -148,6 +272,7 @@ main {
   background-color: var(--cardBackground);
   display: flex;
   justify-content: space-between;
+  padding: 0;
 }
 
 .forecast-text {
@@ -164,46 +289,20 @@ main {
 #newsHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.dropbtn {
-  border: 2px solid black;
-  border-radius: 23px;
-  padding: 2px 20px 2px 20px;
-  font-size: 16px;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-content {
+#clearNewsSavesButton {
   display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  z-index: 1;
-}
-
-.dropdown-content button {
-  color: black;
-  padding: 10px 16px;
-  width: 100%;
+  background: none;
   border: none;
-  text-decoration: none;
-  display: block;
+  outline: none;
 }
 
-.dropdown-content button:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+#showSavesButton {
+  background: none;
+  border: none;
+  outline: none;
 }
 
 .savedLinks {
