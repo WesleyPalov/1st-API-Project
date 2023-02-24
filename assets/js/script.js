@@ -139,22 +139,20 @@ $("#category").on("change", getCategory);
 
 function getCategory() {
   var category = $("#category option:selected").val();
-  console.log(category);
+  var requestUrlNews =
+    "https://newsdata.io/api/1/news?apikey=pub_177975100b458a5296d87e0ed7210ba464f97&country=us&category=" +
+    category;
+  getNewsApi(requestUrlNews);
 }
 
-function getNewsApi() {
-  // var requestUrlNews =
-  // "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us";
-  // "&category=";
-  //   fetch(requestUrlNews)
-  //     .then(function (response) {
-  //       return response.json();
-  //     })
-  //     .then(function (data) {
-  //       console.log(data);
-  //     });
+function getNewsApi(requestUrlNews) {
+  fetch(requestUrlNews)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    });
 }
-
-getNewsApi();
 
 //Thomas' codeBase
