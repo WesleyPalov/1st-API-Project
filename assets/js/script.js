@@ -131,6 +131,8 @@ searchHistoryList.on("click", "btn.btn-info", function (event) {
   //currentConditionsRequest(value);
   // searchHistory(value);
 });
+console.log(tempTop);
+
 
 //Michael's codebase
 var requestUrlNews =
