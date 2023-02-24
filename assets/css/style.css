@@ -1,24 +1,74 @@
+html,
+.container-fluid,
+.content-row {
+  color: white;
+}
+
 body {
   display: flex;
+  flex-direction: column;
   height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1546484396-fb3fc6f95f98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0;
 }
 
 header {
-  background-color: blue;
+  display: flex;
+  color: rgb(230, 179, 37);
+  background-color: rgb(97, 72, 28);
+  border-bottom: 1rem solid rgb(164, 126, 59);
+  min-height: 6.5rem;
+}
+
+header div {
+  display: flex;
+  justify-content: end;
+  margin: auto;
 }
 
 main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   border: 5px solid red;
 }
 
 #weatherContainer {
-  border: 5px solid green;
+  /* border: 5px solid green; */
+  background-color: rgb(230, 179, 37, 0.7);
+  /* margin: 10px; */
 }
+
+.city-btn:hover {
+  background-color: #f6f5f5;
+  cursor: pointer;
+}
+
+.card-body {
+  background-color: #cce5ff;
+  margin: 5px;
+  border-radius: 5px;
+}
+
 #mapContainer {
-  border: 5px solid blue;
+  /* border: 5px solid blue; */
+  background-color: rgb(230, 179, 37, 0.7);
+  /* margin: 10px; */
 }
+
 #newsContainer {
-  border: 5px solid yellow;
+  /* border: 5px solid yellow; */
+  background-color: rgb(230, 179, 37, 0.7);
+  /* margin: 10px; */
+  padding: 10px;
 }
 
 .forecast-text {
@@ -31,11 +81,11 @@ main {
 }
 
 .dropbtn {
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
+  border: 2px solid black;
   padding: 16px;
   font-size: 16px;
-  border: none;
 }
 
 .dropdown {
