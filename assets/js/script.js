@@ -131,21 +131,28 @@ searchHistoryList.on("click", "btn.btn-info", function (event) {
   //currentConditionsRequest(value);
   // searchHistory(value);
 });
-console.log(tempTop);
-
+// console.log(tempTop);
 
 //Michael's codebase
-var requestUrlNews =
-  "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=world";
+
+$("#category").on("change", getCategory);
+
+function getCategory() {
+  var category = $("#category option:selected").val();
+  console.log(category);
+}
 
 function getNewsApi() {
-  fetch(requestUrlNews)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-    });
+  // var requestUrlNews =
+  // "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us";
+  // "&category=";
+  //   fetch(requestUrlNews)
+  //     .then(function (response) {
+  //       return response.json();
+  //     })
+  //     .then(function (data) {
+  //       console.log(data);
+  //     });
 }
 
 getNewsApi();
