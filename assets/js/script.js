@@ -120,11 +120,6 @@ searchHistoryList.on("click","btn.btn-info", function(event) {
    // searchHistory(value); 
 
 });
-<<<<<<< HEAD
-=======
-console.log(tempTop);
-
->>>>>>> main
 
 //Michael's codebase
 var requestUrlNews =
