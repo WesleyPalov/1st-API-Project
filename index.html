@@ -32,11 +32,13 @@
           <i class="fa-solid fa-mug-hot"></i>
           The Daily Brew
         </h1>
-        <h1 id="todaysDate">
-          |
-          <div class="dropDown">
-            <button id="settingsButton" class="dropButton">
-              <i class="fa-solid fa-gear fa-2xl"></i>
+        <div id="headerTopRight">
+          <h1 id="todaysDate">This is the dateawdawdwadawdawd
+            |
+          </h1>
+          <div id="settingsDropDown">
+            <button id="settingsButton" class="iconButton" type="Button">
+              <i class="fa-solid fa-gear insideButton"></i>
             </button>
             <div class="dropDownContent">
               <p>asdaw</p>
@@ -52,7 +54,7 @@
               <p>asdaw</p>
             </div>
           </div>
-        </h1>
+        </div>
       </header>
 
       <main>
@@ -108,7 +110,7 @@
           <div id="five-day-forecast" class="bg">
             <h2 id="five-day-forecast-header">5-Day Forecast</h2>
             <div id="cardContainer" class="row">
-              <div class="col-2">
+              <!-- <div class="col-2">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-header">
@@ -120,7 +122,7 @@
                     <p class="card-text">Wind:</p>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -129,8 +131,8 @@
           <div id="newsHeader">
             <h2>News Articles</h2>
             <div id="newsSettings">
-              <div class="dropdown">
-                <select name="category" id="category" class="dropButton dec">
+              <div id="newsDropdown">
+                <select name="category" id="category" class="dropButton">
                   <option>World</option>
                   <option>Business</option>
                   <option>Entertainment</option>
@@ -144,11 +146,11 @@
                   <option>Top</option>
                 </select>
               </div>
-              <button id="clearNewsSavesButton">
-                <i class="fa-solid fa-trash fa-xl"></i>
+              <button id="clearNewsSavesButton" type="button" class="iconButton">
+                <i class="fa-solid fa-trash insideButton"></i>
               </button>
-              <button id="showSavesButton">
-                <i class="fa-solid fa-eye fa-xl"></i>
+              <button id="showSavesButton" type="button" class="iconButton">
+                <i class="fa-solid fa-eye insideButton"></i>
               </button>
             </div>
           </div>

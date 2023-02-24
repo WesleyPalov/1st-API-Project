@@ -43,31 +43,46 @@ header {
   padding-left: 15rem;
 }
 
+#headerTopRight {
+  display: flex;
+}
+
 .fa-mug-hot {
   margin-right: 10px;
 }
 
-.dropDown {
+#settingsDropDown {
+  display: flex;
+  align-items: center;
   position: relative;
-  display: inline-block;
 }
 
 #settingsButton {
-  border: none;
-  background: none;
   outline: none;
 }
 
-.dropButton {
+.insideButton {
+  font-size: 28px;
+}
+
+.iconButton {
+  border: none;
+  background: rgb(0, 0, 0, 0);
+  outline: none;
+  border-radius: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.iconButton:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* .dropButton {
   border: 2px solid black;
   border-radius: 23px;
   padding: 2px 20px 2px 20px;
   font-size: 16px;
-}
-
-.fa-gear {
-  padding: 5px;
-}
+} */
 
 /* .dropButton > option {
   display: none;
@@ -100,10 +115,6 @@ header {
   text-decoration: none;
   display: block;
 }
-
-/* .dropDownContent button:hover {
-  background-color: #ddd;
-} */
 
 .dropDown:hover .dropDownContent {
   display: block;
@@ -233,12 +244,6 @@ main {
   padding: 10px;
 }
 
-#todaysData {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
 #todaysData > p {
   padding: 10px 0;
 }
@@ -292,16 +297,24 @@ main {
   align-items: center;
 }
 
+#newSettings {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-grow: 1;
+}
+
+#newsDropDown {
+  position: relative;
+  display: inline-block;
+}
+
+/* outline is only working in id, not class */
 #clearNewsSavesButton {
-  display: none;
-  background: none;
-  border: none;
   outline: none;
 }
 
 #showSavesButton {
-  background: none;
-  border: none;
   outline: none;
 }
 
