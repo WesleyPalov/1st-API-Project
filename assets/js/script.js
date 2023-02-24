@@ -40,13 +40,18 @@ function getNewsApi() {
 getNewsApi();
 
 //Thomas' codeBase
-var mapKey = "s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
-var testTile =
-  "https://api.tomtom.com/map/1/tile/basic/main/11/426/777.png?tileSize=256&view=Unified&language=NGT&key=";
+//tile parameters: x/y
+var mapKey =
+  ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
+var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+var tileTL = tileFetchUrl + "426/776" + mapKey;
+var tileTR = tileFetchUrl + "427/776" + mapKey;
+var tileBL = tileFetchUrl + "426/777" + mapKey;
+var tileBR = tileFetchUrl + "427/777" + mapKey;
 var mapEl = document.querySelector("#mapContainer");
 
-function fetchTile() {
-  fetch(testTile + mapKey)
+function fetchTile(tileUrl) {
+  fetch(tileUrl)
     .then(function (response) {
       return response;
     })
@@ -58,4 +63,7 @@ function fetchTile() {
     });
 }
 
-fetchTile();
+fetchTile(tileTL);
+fetchTile(tileBL);
+fetchTile(tileTR);
+fetchTile(tileBR);
