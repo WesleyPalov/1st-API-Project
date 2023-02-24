@@ -157,7 +157,12 @@ var tileBL = tileFetchUrl + "426/777" + mapKey;
 var tileBR = tileFetchUrl + "427/777" + mapKey;
 var topRowEl = document.querySelector("#topRow");
 var bottomRowEl = document.querySelector("#bottomRow");
+<<<<<<< HEAD
 var mapContainerEl = document.querySelector("#map-containernumerodos");
+=======
+var mapContainerEl = document.querySelector("#mapContainerPart2");
+var trafficContainerEl = document.querySelector("#trafficContainer");
+>>>>>>> main
 var trafficFetchUrl =
   "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
 var trafficTL = trafficFetchUrl + "426/776" + mapKey;
@@ -165,7 +170,10 @@ var trafficTR = trafficFetchUrl + "427/776" + mapKey;
 var trafficBL = trafficFetchUrl + "426/777" + mapKey;
 var trafficBR = trafficFetchUrl + "427/777" + mapKey;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 function fetchMapTile(tileUrl) {
   fetch(tileUrl)
     .then(function (response) {
@@ -177,11 +185,16 @@ function fetchMapTile(tileUrl) {
       mapTile.setAttribute("src", data.url);
       mapContainerEl.appendChild(mapTile);
     });
+<<<<<<< HEAD
   }
+=======
+}
+>>>>>>> main
 fetchMapTile(tileTL);
 fetchMapTile(tileTR);
 fetchMapTile(tileBL);
 fetchMapTile(tileBR);
+<<<<<<< HEAD
 
 
 fetch(trafficTL)
@@ -232,3 +245,50 @@ fetchTile(tileTL);
 fetchTile(tileTR);
 fetchTile(tileBL);
 fetchTile(tileBR);
+=======
+
+fetch(trafficTL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTL");
+    trafficContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficTR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTR");
+    trafficContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBL");
+    trafficContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBR");
+    trafficContainerEl.appendChild(mapTile);
+    console.log("test");
+  });
+>>>>>>> main

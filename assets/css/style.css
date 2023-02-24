@@ -223,36 +223,19 @@ main {
 #mapContainer {
   background-color: var(--opBackground);
   border-radius: 10px;
-  padding: 25px;
+  padding: 10px;
+  position: relative;
 }
 
-#map-containernumerodos {
-  position: relative;
+#mapContainerPart2 {
   height: 512px;
   width: 512px;
-  padding-bottom: 20px;
 }
 
-.overlayTrafficTL {
+#trafficContainer {
   position: absolute;
-  top: 0px;
-  left: 0px;
-}
-
-.overlayTrafficTR {
-  position: absolute;
-  top: 0px;
-  left: 256px;
-}
-
-.overlayTrafficBL {
-  position: absolute;
-  top: 256px;
-  left: 0px;
-}
-
-.overlayTrafficBR {
-  position: absolute;
-  top: 256px;
-  left: 256px;
+  height: 512px;
+  width: 512px;
+  top: 10px;
+  left: 10px;
 }
