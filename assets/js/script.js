@@ -40,7 +40,7 @@ function getNewsApi() {
 getNewsApi();
 
 //Thomas' codeBase
-//tile parameters: x/y
+//tile parameters: x/y pushed js down to not interfere.
 var mapKey =
   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
 var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
