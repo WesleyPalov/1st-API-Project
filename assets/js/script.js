@@ -48,7 +48,8 @@ var tileTL = tileFetchUrl + "426/776" + mapKey;
 var tileTR = tileFetchUrl + "427/776" + mapKey;
 var tileBL = tileFetchUrl + "426/777" + mapKey;
 var tileBR = tileFetchUrl + "427/777" + mapKey;
-var mapEl = document.querySelector("#mapContainer");
+var topRowEl = document.querySelector("#topRow");
+var bottomRowEl = document.querySelector("#bottomRow");
 
 function fetchTile(tileUrl) {
   fetch(tileUrl)
@@ -59,11 +60,17 @@ function fetchTile(tileUrl) {
       console.log(data);
       var mapTile = document.createElement("img");
       mapTile.setAttribute("src", data.url);
-      mapEl.appendChild(mapTile);
+      console.log(tileUrl);
+      console.log(typeof tileUrl);
+      if (tileUrl.includes("776")) {
+        topRowEl.appendChild(mapTile);
+      } else {
+        bottomRowEl.appendChild(mapTile);
+      }
     });
 }
 
 fetchTile(tileTL);
-fetchTile(tileBL);
 fetchTile(tileTR);
+fetchTile(tileBL);
 fetchTile(tileBR);
