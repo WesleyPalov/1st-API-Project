@@ -8,6 +8,7 @@ var currentCity = $("#current-city");
 var currentTemp = $("#current-temp");
 var currentHumidity = $("#current-humidity");
 var currentWindSpeed = $("#current-wind-speed");
+var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 // storing local storage 
 var locStor;
@@ -54,7 +55,8 @@ function currentWeatherRequest(searchValue) {
         currentTemp.append("&deg;F");
         currentHumidity.text(response.main.humidity + "%");
         currentWindSpeed.text(response.wind.speed + "MPH");
-
+        currentFeels.text(response.main.feels_like);
+        currentFeels.append("&deg;F");
         var lat = response.coord.lat;
         var lon = response.coord.lon;
         
@@ -120,11 +122,6 @@ searchHistoryList.on("click","btn.btn-info", function(event) {
    // searchHistory(value); 
 
 });
-<<<<<<< HEAD
-=======
-console.log(tempTop);
-
->>>>>>> main
 
 //Michael's codebase
 var requestUrlNews =
