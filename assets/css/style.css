@@ -1,28 +1,164 @@
+:root {
+  --dark4: rgb(97, 72, 28);
+  --dark3: rgb(164, 126, 59);
+  --dark2: rgb(191, 151, 66);
+  --dark1: rgb(230, 179, 37);
+  --light4: rgb(197, 137, 64);
+  --light3: rgb(229, 186, 115);
+  --light2: rgb(250, 234, 177);
+  --light1: rgb(250, 248, 241);
+  --opBackground: rgba(255, 255, 255, 0.5);
+  --cardBackground: rgb(204, 229, 255);
+  /* background-color: var(--dark4); */
+}
+
+html {
+  color: white;
+}
+
 body {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(0deg, black 0%, var(--dark4) 100%);
+  /* background: linear-gradient(0deg, var(--light3) 0%, var(--light1) 100%); */
+}
+
+.darkMode {
+  background: linear-gradient(0deg, var(--light2) 0%, var(--light1) 100%);
+}
+
+.container-fluid {
+  padding: 0;
 }
 
 header {
-  background-color: blue;
+  display: flex;
+  color: var(--dark1);
+  background-color: var(--dark4);
+  border-bottom: 1.5rem solid var(--dark2);
+  min-height: 100px;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+#settingsButton {
+  border: none;
+  background: rgba(0, 0, 0, 0);
+}
+
+.fa-gear {
+  padding: 5px;
 }
 
 main {
-  border: 5px solid red;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-left: 25rem;
+  padding-right: 25rem;
+  padding-bottom: 20px;
+}
+
+.bg {
+  background-color: var(--opBackground);
+  border-radius: 10px;
 }
 
 #weatherContainer {
-  border: 5px solid green;
+  display: flex;
+  flex-direction: column;
 }
-#mapContainer {
-  border: 5px solid blue;
+
+#weatherTop {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+  /* border: 3px solid red; */
 }
-#newsContainer {
-  border: 5px solid yellow;
+
+#weatherSearchBox {
+  display: flex;
+  flex-direction: column;
+  max-width: 40%;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+#saved-cities {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#clear-history {
+  display: flex;
+  margin-top: auto;
+}
+
+.city-btn:hover {
+  background-color: #f6f5f5;
+  cursor: pointer;
+}
+
+#weather-today {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+#todaysData {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+#todaysData > p {
+  padding: 10px 0;
+}
+
+#five-day-forecast-header {
+  padding: 10px;
+  text-align: center;
+}
+
+#five-day-forecast {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+#cardContainer {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 10px;
+}
+
+.card-body {
+  background-color: var(--cardBackground);
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.card-header {
+  background-color: var(--cardBackground);
+  display: flex;
+  justify-content: space-between;
 }
 
 .forecast-text {
   display: inline;
+}
+
+#newsContainer {
+  background-color: var(--opBackground);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 #newsHeader {
@@ -31,11 +167,10 @@ main {
 }
 
 .dropbtn {
-  background-color: black;
-  color: white;
-  padding: 16px;
+  border: 2px solid black;
+  border-radius: 23px;
+  padding: 2px 20px 2px 20px;
   font-size: 16px;
-  border: none;
 }
 
 .dropdown {
@@ -47,15 +182,14 @@ main {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
 .dropdown-content button {
   color: black;
-  padding: 12px 16px;
+  padding: 10px 16px;
   width: 100%;
+  border: none;
   text-decoration: none;
   display: block;
 }
@@ -70,4 +204,24 @@ main {
 
 .dropdown:hover .dropbtn {
   background-color: #3e8e41;
+}
+
+.savedLinks {
+  display: none;
+}
+
+#articleDisplay {
+  background-color: var(--light2);
+  border-radius: 10px;
+  margin: 10px;
+}
+
+#articleDisplay > div {
+  padding: 10px;
+}
+
+#mapContainer {
+  background-color: var(--opBackground);
+  border-radius: 10px;
+  padding: 10px;
 }
