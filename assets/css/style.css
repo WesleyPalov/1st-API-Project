@@ -224,4 +224,18 @@ main {
   background-color: var(--opBackground);
   border-radius: 10px;
   padding: 10px;
+  position: relative;
+}
+
+#mapContainerPart2 {
+  height: 512px;
+  width: 512px;
+}
+
+#trafficContainer {
+  position: absolute;
+  height: 512px;
+  width: 512px;
+  top: 10px;
+  left: 10px;
 }
