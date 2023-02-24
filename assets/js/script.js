@@ -120,8 +120,11 @@ searchHistoryList.on("click","btn.btn-info", function(event) {
    // searchHistory(value); 
 
 });
+<<<<<<< HEAD
+=======
 console.log(tempTop);
 
+>>>>>>> main
 
 //Michael's codebase
 var requestUrlNews =
@@ -139,118 +142,38 @@ function getNewsApi() {
 
 getNewsApi();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Thomas' codeBase
+//tile parameters: x/y pushed js down to not interfere.
+var mapKey =
+  ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
+var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+var tileTL = tileFetchUrl + "426/776" + mapKey;
+var tileTR = tileFetchUrl + "427/776" + mapKey;
+var tileBL = tileFetchUrl + "426/777" + mapKey;
+var tileBR = tileFetchUrl + "427/777" + mapKey;
+var topRowEl = document.querySelector("#topRow");
+var bottomRowEl = document.querySelector("#bottomRow");
+
+function fetchTile(tileUrl) {
+  fetch(tileUrl)
+    .then(function (response) {
+      return response;
+    })
+    .then(function (data) {
+      console.log(data);
+      var mapTile = document.createElement("img");
+      mapTile.setAttribute("src", data.url);
+      console.log(tileUrl);
+      console.log(typeof tileUrl);
+      if (tileUrl.includes("776")) {
+        topRowEl.appendChild(mapTile);
+      } else {
+        bottomRowEl.appendChild(mapTile);
+      }
+    });
+}
+
+fetchTile(tileTL);
+fetchTile(tileTR);
+fetchTile(tileBL);
+fetchTile(tileBR);
