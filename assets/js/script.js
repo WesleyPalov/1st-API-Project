@@ -160,6 +160,13 @@ var tileBR = tileFetchUrl + "427/777" + mapKey;
 var topRowEl = document.querySelector("#topRow");
 var bottomRowEl = document.querySelector("#bottomRow");
 var mapContainerEl = document.querySelector("#map-containernumerodos");
+var trafficFetchUrl =
+  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
+var trafficTL = trafficFetchUrl + "426/776" + mapKey;
+var trafficTR = trafficFetchUrl + "427/776" + mapKey;
+var trafficBL = trafficFetchUrl + "426/777" + mapKey;
+var trafficBR = trafficFetchUrl + "427/777" + mapKey;
+
 
 function fetchMapTile(tileUrl) {
   fetch(tileUrl)
@@ -172,52 +179,18 @@ function fetchMapTile(tileUrl) {
       mapTile.setAttribute("src", data.url);
       mapContainerEl.appendChild(mapTile);
     });
-}
-
-function fetchTrafficTile(tileUrl) {
-  fetch(tileUrl)
-    .then(function (response) {
-      return response;
-    })
-    .then(function (data) {
-      console.log(data);
-      var mapTile = document.createElement("img");
-      mapTile.setAttribute("src", data.url);
-      mapTile.classList.add("overlayTraffic");
-      mapContainerEl.appendChild(mapTile);
-    });
-}
 
 fetchMapTile(tileTL);
 fetchMapTile(tileTR);
 fetchMapTile(tileBL);
 fetchMapTile(tileBR);
 
-var trafficFetchUrl =
-  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
-var trafficTL = trafficFetchUrl + "426/776" + mapKey;
-var trafficTR = trafficFetchUrl + "427/776" + mapKey;
-var trafficBL = trafficFetchUrl + "426/777" + mapKey;
-var trafficBR = trafficFetchUrl + "427/777" + mapKey;
-
-// fetch(trafficTL)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//     var trafficTile = document.createElement("img");
-//     trafficTile.setAttribute("src", data.url);
-//     trafficTile.classList.add("overlayTraffic");
-//     topRowEl.appendChild(trafficTile);
-//   });
 
 fetch(trafficTL)
   .then(function (response) {
     return response;
   })
   .then(function (data) {
-    console.log(data);
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficTL");
@@ -229,7 +202,6 @@ fetch(trafficTR)
     return response;
   })
   .then(function (data) {
-    console.log(data);
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficTR");
@@ -241,7 +213,6 @@ fetch(trafficBL)
     return response;
   })
   .then(function (data) {
-    console.log(data);
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficBL");
@@ -253,9 +224,10 @@ fetch(trafficBR)
     return response;
   })
   .then(function (data) {
-    console.log(data);
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficBR");
     mapContainerEl.appendChild(mapTile);
   });
+
+  //maybe can make two containers one for the map and one for the traffic then absolute position the traffic container over the map, would make the code cleaner and remove a bunch of unnecessary css code
