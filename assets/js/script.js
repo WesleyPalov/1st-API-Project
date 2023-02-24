@@ -118,6 +118,19 @@ $(searchBtnEl).on("click", function (event) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Michael's codebase
 var requestUrlNews =
   "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=world";
