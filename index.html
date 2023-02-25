@@ -35,15 +35,33 @@
   <body>
     <section class="container-fluid">
       <header>
-        <h1>The Daily Brew <i class="fa-solid fa-mug-hot"></i></h1>
-        <!-- .unshift to add content before hte | -->
-        <h1 id="todaysDate">
-          |
-          <!-- function myFunction() {document.body.classList.toggle("dark-mode");}  -->
-          <button id="settingsButton">
-            <i class="fa-solid fa-gear"></i>
-          </button>
+        <h1>
+          <i class="fa-solid fa-mug-hot"></i>
+          The Daily Brew
         </h1>
+        <div id="headerTopRight">
+          <h1 id="todaysDate">
+            |
+          </h1>
+          <div id="settingsDropDown">
+            <button id="settingsButton" class="iconButton" type="Button">
+              <i class="fa-solid fa-gear insideButton"></i>
+            </button>
+            <div class="dropDownContent">
+              <p>asdaw</p>
+              <p>asdaw</p>
+              <p>Light Mode / Dark Mode
+                <div class="switch">
+                  <label class="themeSwitch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round"></div>
+                  </label>
+                </div>
+              </p>
+              <p>asdaw</p>
+            </div>
+          </div>
+        </div>
       </header>
 
       <main>
@@ -91,7 +109,7 @@
                 <p class="mb-0">
                   Wind Speed: <span id="current-wind-speed"></span>
                 </p>
-                <p>UV index: <span id="uv-index"></span></p>
+                <p class="mb-0">UV index: <span id="uv-index"></span></p>
                 <p class="mb-0">Feels like: <span id="current-feels"></span></p>
               </div>
             </div>
@@ -100,7 +118,7 @@
           <div id="five-day-forecast" class="bg">
             <h2 id="five-day-forecast-header">5-Day Forecast</h2>
             <div id="cardContainer" class="row">
-              <div class="col-2">
+              <!-- <div class="col-2">
                 <div class="card">
                   <div class="card-body">
                     <div class="card-header">
@@ -112,7 +130,7 @@
                     <p class="card-text">Wind:</p>
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </section>
@@ -122,7 +140,7 @@
             <h2>News Articles</h2>
             <div id="newsSettings">
               <div class="dropdown">
-                <select name="category" id="category">
+                <select name="category" id="category" class="dropButton">
                   <option>World</option>
                   <option>Business</option>
                   <option>Entertainment</option>
@@ -136,8 +154,15 @@
                   <option>Top</option>
                 </select>
               </div>
-              <button id="settingsButton">
-                <i class="fa-solid fa-eye"></i>
+              <button
+                id="clearNewsSavesButton"
+                type="button"
+                class="iconButton"
+              >
+                <i class="fa-solid fa-trash insideButton"></i>
+              </button>
+              <button id="showSavesButton" type="button" class="iconButton">
+                <i class="fa-solid fa-eye insideButton"></i>
               </button>
             </div>
           </div>
