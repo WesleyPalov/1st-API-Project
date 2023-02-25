@@ -8,6 +8,7 @@ var currentCity = $("#current-city");
 var currentTemp = $("#current-temp");
 var currentHumidity = $("#current-humidity");
 var currentWindSpeed = $("#current-wind-speed");
+var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 // storing local storage
 var locStor;
@@ -75,14 +76,36 @@ function currentWeatherRequest(searchValue) {
       APIkey;
     // AJAX Call for UV index
     $.ajax({
-      url: UVurl,
-      method: "GET",
-    }).then(function (response) {
-      console.log("UV call: ");
+        url: queryURL,
+        method: "GET"
+    }).then(function(response){
+        console.log(response);
+        currentCity.text(response.name);
+        currentCity.append("<small class='text-muted' id='current-date'>");
+        $("#current-date").text("(" + currentDate + ")");
+        currentCity.append("<img src='https://openweathermap.org/img/w/" + response.weather[0].icon + ".png' alt='" + response.weather[0].main + "' />" )
+        currentTemp.text(response.main.temp);
+        currentTemp.append("&deg;F");
+        currentHumidity.text(response.main.humidity + "%");
+        currentWindSpeed.text(response.wind.speed + "MPH");
+        currentFeels.text(response.main.feels_like);
+        currentFeels.append("&deg;F");
+        var lat = response.coord.lat;
+        var lon = response.coord.lon;
+        
 
-      UVindex.text(response.value);
-    });
-  });
+        var UVurl = "https://api.openweathermap.org/data/2.5/uvi?&lat=" + lat + "&lon=" + lon + "&appid=" + APIkey;
+        // AJAX Call for UV index
+        $.ajax({
+            url: UVurl,
+            method: "GET"
+        }).then(function(response){
+             console.log("UV call: ")
+          
+            UVindex.text(response.value);
+        });
+});
+});
 }
 
 function toLocalStore() {
@@ -131,7 +154,6 @@ searchHistoryList.on("click", "btn.btn-info", function (event) {
   //currentConditionsRequest(value);
   // searchHistory(value);
 });
-// console.log(tempTop);
 
 //Michael's codebase
 
