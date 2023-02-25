@@ -222,6 +222,10 @@ main {
   padding: 10px;
 }
 
+#searchForm {
+  display: flex;
+}
+
 #saved-cities {
   display: flex;
   flex-direction: column;
@@ -231,22 +235,31 @@ main {
 #clear-history {
   display: flex;
   margin-top: auto;
+  justify-content: center;
+}
+
+.cityButtons {
+  margin: 5px;
 }
 
 .city-btn:hover {
-  background-color: #f6f5f5;
+  background-color: rgb(246, 245, 245, 0.3);
   cursor: pointer;
 }
 
 #weather-today {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   flex-grow: 1;
   padding: 10px;
 }
 
 #todaysData > p {
   padding: 10px 0;
+}
+
+.weatherGif {
+  max-height: 18rem;
 }
 
 #five-day-forecast-header {
@@ -265,13 +278,14 @@ main {
   justify-content: space-evenly;
   margin-left: 0px;
   margin-right: 0px;
-  padding: 5px;
+  padding: 10px;
 }
 
 .card-body {
   background-color: var(--cardBackground);
   border: 2px solid black;
   border-radius: 5px;
+  padding: 15px;
 }
 
 .card-header {
@@ -279,6 +293,11 @@ main {
   display: flex;
   justify-content: space-between;
   padding: 0;
+}
+
+.card-title {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .forecast-text {
@@ -298,11 +317,9 @@ main {
   align-items: center;
 }
 
-#newSettings {
+#newsSettings {
   display: flex;
   align-items: center;
-  position: relative;
-  flex-grow: 1;
 }
 
 #newsDropDown {
@@ -314,6 +331,7 @@ main {
 #clearNewsSavesButton {
   display: none;
   outline: none;
+  margin: 0 10px;
 }
 
 #showSavesButton {
@@ -332,6 +350,22 @@ main {
 
 #articleDisplay > div {
   padding: 10px;
+}
+
+.newsCardStyle {
+  padding: 10px;
+  /* margin: 10px; */
+  border-radius: 10px;
+}
+
+.news-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+.yNewsBoxStyle {
+  display: flex;
+  flex-direction: column;
 }
 
 #mapContainer {

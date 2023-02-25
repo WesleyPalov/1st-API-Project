@@ -40,7 +40,7 @@
           The Daily Brew
         </h1>
         <div id="headerTopRight">
-          <h1 id="todaysDate">
+          <h1 id="current-date">
             |
           </h1>
           <div id="settingsDropDown">
@@ -69,24 +69,20 @@
           <div id="weatherTop">
             <div id="weatherSearchBox" class="bg">
               <h5>Search for a city:</h5>
-              <form>
-                <div class="form-group input-group">
+              <form id="searchForm">
                   <input
                     type="text"
                     class="form-control"
                     id="search-city"
                     placeholder="Enter city here"
                   />
-                  <div class="input-group-append">
                     <button
                       class="btn btn-info"
-                      type="button"
+                      type="submit"
                       id="search-city-button"
                     >
                       <i class="fa fa-search"></i>
                     </button>
-                  </div>
-                </div>
               </form>
               <div id="saved-cities">
                 <ul id="search-history-list"></ul>
@@ -97,21 +93,14 @@
             </div>
 
             <div id="weather-today" class="bg">
-              <h2 id="current-city">
-                City Information
-                <i class="fa-solid fa-sun"></i>
-              </h2>
-              <div id="todaysData">
-                <p class="mb-0">Temperature: <span id="current-temp"></span></p>
-                <p class="mb-0">
-                  Humidity: <span id="current-humidity"></span>
-                </p>
-                <p class="mb-0">
-                  Wind Speed: <span id="current-wind-speed"></span>
-                </p>
-                <p class="mb-0">UV index: <span id="uv-index"></span></p>
-                <p class="mb-0">Feels like: <span id="current-feels"></span></p>
+              <div>
+                <h2 id="current-city">
+                  City Information
+                </h2>
+                <div id="todaysData">
+                </div>
               </div>
+              <div id="awd"><img src="" alt="" class="weatherGif"/></div>
             </div>
           </div>
 
@@ -139,7 +128,7 @@
           <div id="newsHeader">
             <h2>News Articles</h2>
             <div id="newsSettings">
-              <div id="newsDropdown">
+              <div id="newsDropDown">
                 <select name="category" id="category" class="dropButton">
                   <option>World</option>
                   <option>Business</option>
