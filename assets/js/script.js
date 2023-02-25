@@ -133,6 +133,31 @@
 // });
 // // console.log(tempTop);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Michael's codebase
 
 var newsArticles = $(".newsArticles");
