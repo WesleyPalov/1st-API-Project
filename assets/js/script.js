@@ -147,7 +147,34 @@ currentWeatherRequest(value);
 // end of Wesley's code
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //Michael's codebase
+
+var newsArticles = $(".newsArticles");
 
 $("#category").on("change", getCategory);
 
@@ -166,8 +193,124 @@ function getNewsApi(requestUrlNews) {
     })
     .then(function (data) {
       console.log(data);
+
+      newsArticles.empty();
+
+      for (var i = 0; i < data.results.length; i++) {
+        printResults(data.results[i]);
+      }
     });
 }
+
+function printResults(resultObj) {
+  var newsCard = $("<div></div>");
+  newsCard.addClass("bg-light", "text-dark", "mb-3", "p-3");
+
+  var newsBody = $("<div></div>");
+  newsBody.addClass("news-body");
+  newsCard.append(newsBody);
+
+  var newsTitle = $("<h3></h3>");
+  newsTitle.text(resultObj.title);
+
+  var bodyContentNews = $("<p></p>");
+  bodyContentNews.html(
+    "<strong>Date:</strong>" + resultObj.pubDate.split("", 3) + "<br/>"
+  );
+
+  bodyContentNews.html("<strong>Description:</strong>" + resultObj.description);
+
+  var linkNewsArticle = $("<a></a>");
+  linkNewsArticle.text("Read More");
+  linkNewsArticle.attr("href", resultObj.link);
+  linkNewsArticle.addClass("btn-dark");
+
+  newsBody.append(newsTitle, bodyContentNews, linkNewsArticle);
+
+  newsArticles.append(newsCard);
+}
+
+var showingSave = 0;
+$("#showSavesButton").on("click", function () {
+  if (showingSave === 0) {
+    $(".savedLinks").css("display", "block");
+    $("#clearNewsSavesButton").css("display", "block");
+    showingSave++;
+  } else {
+    $(".savedLinks").css("display", "none");
+    $("#clearNewsSavesButton").css("display", "none");
+    showingSave--;
+  }
+});
+$("#clearNewsSavesButton").on("click", function () {});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //Thomas' codeBase
 var mapKey =
@@ -179,8 +322,19 @@ var tileBL = tileFetchUrl + "426/777" + mapKey;
 var tileBR = tileFetchUrl + "427/777" + mapKey;
 var topRowEl = document.querySelector("#topRow");
 var bottomRowEl = document.querySelector("#bottomRow");
+var mapContainerEl = document.querySelector("#map-containernumerodos");
+var mapContainerEl = document.querySelector("#mapContainerPart2");
+var trafficContainerEl = document.querySelector("#trafficContainer");
 
-function fetchTile(tileUrl) {
+var trafficFetchUrl =
+  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
+var trafficTL = trafficFetchUrl + "426/776" + mapKey;
+var trafficTR = trafficFetchUrl + "427/776" + mapKey;
+var trafficBL = trafficFetchUrl + "426/777" + mapKey;
+var trafficBR = trafficFetchUrl + "427/777" + mapKey;
+
+
+function fetchMapTile(tileUrl) {
   fetch(tileUrl)
     .then(function (response) {
       return response;
@@ -189,15 +343,59 @@ function fetchTile(tileUrl) {
       console.log(data);
       var mapTile = document.createElement("img");
       mapTile.setAttribute("src", data.url);
-      console.log(tileUrl);
-      console.log(typeof tileUrl);
-      if (tileUrl.includes("776")) {
-        topRowEl.appendChild(mapTile);
-      } else {
-        bottomRowEl.appendChild(mapTile);
-      }
+      mapContainerEl.appendChild(mapTile);
     });
-}
+  }
+fetchMapTile(tileTL);
+fetchMapTile(tileTR);
+fetchMapTile(tileBL);
+fetchMapTile(tileBR);
+
+
+
+fetch(trafficTL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficTR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTR");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBR");
+    mapContainerEl.appendChild(mapTile);
+  });
 
 fetchTile(tileTL);
 fetchTile(tileTR);
