@@ -102,7 +102,7 @@ header {
 
 .dropDownContent {
   display: none;
-  position: absolute;
+  position: relative;
   background-color: #f1f1f1;
   z-index: 1;
   color: black;
@@ -116,9 +116,9 @@ header {
   display: block;
 }
 
-.dropDown:hover .dropDownContent {
+/* .dropDown:hover .dropDownContent {
   display: block;
-}
+} */
 
 /* .dropDown:hover .dropButton {
   background-color: var(--light3);
@@ -180,6 +180,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* Alt for dark mode */
 /* .darkMode {
   background: linear-gradient(0deg, var(--light2) 0%, var(--light1) 100%);
 }
@@ -311,6 +312,7 @@ main {
 
 /* outline is only working in id, not class */
 #clearNewsSavesButton {
+  display: none;
   outline: none;
 }
 
