@@ -11,9 +11,6 @@ var currentWindSpeed = $("#current-wind-speed");
 var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
-var newSaveButton = $(
-  '<button class="iconButton" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
-);
 // storing local storage
 var locStor;
 var currentDate = moment().format("L");
@@ -200,6 +197,7 @@ function renderCities() {
     '<button class="btn btn-info city-btn cityButtons"  type="button">';
   var tempBut = "</button>";
   searchHistoryList.empty();
+
   for (let i = 0; i < locStor.length; i++) {
     var city = locStor[i];
     var finalTem = tempTop + city + tempBut;
@@ -223,18 +221,17 @@ fromLocalStore();
 renderCities();
 currentWeatherRequest("Denver");
 
-// end of Wesley's code
+//end of Wesley's code
 
-//Michael's codebase
-
+// //Michael's codebase
 var newsArticles = $(".newsArticles");
-
-$("#category").on("change", getCategory);
+var savedArticles = $(".savedLinks");
+var savedNewsArray = [];
 
 function getCategory() {
   var category = $("#category option:selected").val();
   var requestUrlNews =
-    "https://newsdata.io/api/1/news?apikey=pub_177975100b458a5296d87e0ed7210ba464f97&country=us&category=" +
+    "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=" +
     category;
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
   getNewsApi(requestUrlNews);
@@ -253,6 +250,14 @@ function getNewsApi(requestUrlNews) {
       for (var i = 0; i < data.results.length; i++) {
         printResults(data.results[i]);
       }
+
+      $(".saveBtn").on("click", function () {
+        var clickBtn = $(this);
+        var savedArticle = clickBtn.parent().children().html();
+        savedNewsArray.push(savedArticle);
+        localStorage.setItem("savedArticles", savedNewsArray);
+        console.log(savedNewsArray);
+      });
     });
 }
 
@@ -261,7 +266,7 @@ function printResults(resultObj) {
   newsCard.addClass("bg-light text-dark mb-3 p-3 newsCardStyle");
 
   var newsBody = $("<div></div>");
-  newsBody.addClass("news-body");
+  newsBody.addClass("newsBody");
   newsCard.append(newsBody);
 
   var yNewsBox = $("<div></div>");
@@ -285,7 +290,7 @@ function printResults(resultObj) {
   linkNewsArticle.addClass("readMoreStyle");
 
   var newSaveButton = $(
-    '<button class="iconButton" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
+    '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
   );
 
   bodyContentNews.append(linkNewsArticle);
@@ -314,6 +319,7 @@ $("#showSavesButton").on("click", function () {
   }
 });
 $("#clearNewsSavesButton").on("click", function () {});
+$("#category").on("change", getCategory);
 
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
 
