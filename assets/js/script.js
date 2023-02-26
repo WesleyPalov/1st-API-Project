@@ -12,7 +12,7 @@ var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
 // storing local storage
-var locStor;
+var locStor = [];
 var currentDate = moment().format("L");
 $("#current-date").text(currentDate + " | ");
 // Get access to the OpenWeather API
@@ -186,7 +186,7 @@ function fromLocalStore() {
   if (arr) {
     locStor = JSON.parse(arr);
   } else {
-    locStor;
+    locstor = [];
   }
 }
 
@@ -223,7 +223,7 @@ currentWeatherRequest("Denver");
 
 //end of Wesley's code
 
-//Michael's codebase
+//Michael's CodeBase
 var newsArticles = $(".newsArticles");
 var savedArticles = $(".savedLinks");
 var savedNewsArray = [];
@@ -256,7 +256,6 @@ function getNewsApi(requestUrlNews) {
         var savedArticle = clickBtn.parent().children().html();
         savedNewsArray.push(savedArticle);
         localStorage.setItem("savedArticles", savedNewsArray);
-        console.log(savedNewsArray);
       });
     });
 }
