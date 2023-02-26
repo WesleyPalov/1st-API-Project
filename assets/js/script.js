@@ -11,9 +11,6 @@ var currentWindSpeed = $("#current-wind-speed");
 var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
-var newSaveButton = $(
-  '<button class="iconButton" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
-);
 // storing local storage
 var locStor;
 var currentDate = moment().format("L");
@@ -234,7 +231,7 @@ $("#category").on("change", getCategory);
 function getCategory() {
   var category = $("#category option:selected").val();
   var requestUrlNews =
-    "https://newsdata.io/api/1/news?apikey=pub_177975100b458a5296d87e0ed7210ba464f97&country=us&category=" +
+    "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=" +
     category;
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
   getNewsApi(requestUrlNews);
