@@ -223,7 +223,7 @@ currentWeatherRequest("Denver");
 
 //end of Wesley's code
 
-// //Michael's codebase
+//Michael's codebase
 var newsArticles = $(".newsArticles");
 var savedArticles = $(".savedLinks");
 var savedNewsArray = [];
