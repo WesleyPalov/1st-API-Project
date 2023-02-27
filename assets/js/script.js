@@ -315,7 +315,7 @@ function printSavedResults(savedObj) {
 
   savedCard.html(savedObj);
 
-  $(".savedLinks").append(savedCard);
+  savedArticles.append(savedCard);
 }
 
 var showingSave = 0;
@@ -332,11 +332,16 @@ $("#showSavesButton").on("click", function () {
 
   if (showingSave === 1) {
     newsArticles.css("display", "none");
+    $("#newsHeader h2").text("Saved Articles");
   } else {
     newsArticles.css("display", "block");
+    $("#newsHeader h2").text("News Articles");
   }
 });
-$("#clearNewsSavesButton").on("click", function () {});
+$("#clearNewsSavesButton").on("click", function () {
+  savedArticles.empty();
+  savedNewsArray = [];
+});
 $("#category").on("change", getCategory);
 
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
