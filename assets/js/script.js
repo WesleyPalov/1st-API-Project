@@ -340,7 +340,7 @@ function printSavedResults(savedObj) {
   savedCard.html(savedObj);
 
   var sinlgeClearButton = $(
-    '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
+    '<button class="iconButton" id="clearBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
   );
 
   savedCard.append(sinlgeClearButton);
@@ -395,6 +395,7 @@ $("#clearNewsSavesButton").on("click", function () {
   savedNewsArray = [];
   localStorage.removeItem("savedArticles", []);
 });
+
 $("#category").on("change", getCategory);
 
 //Thomas' codeBase
