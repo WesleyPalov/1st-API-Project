@@ -270,11 +270,6 @@ function getNewsApi(requestUrlNews) {
         //saves new array to localstorage everytime  btn is pushed
         localStorage.setItem("savedArticles", JSON.stringify(savedNewsArray));
       });
-
-      //for to run for the length of global array and calls function printSavedResults
-      for (var i = 0; i < savedNewsArray.length; i++) {
-        printSavedResults(savedNewsArray[i]);
-      }
     });
 }
 
@@ -374,11 +369,18 @@ $("#showSavesButton").on("click", function () {
     newsArticles.css("display", "block");
     $("#newsHeader h2").text("News Articles");
   }
+  savedArticles.empty();
+  //for to run for the length of global array and calls function printSavedResults
+  for (var i = 0; i < savedNewsArray.length; i++) {
+    printSavedResults(savedNewsArray[i]);
+  }
 });
+
 $("#clearNewsSavesButton").on("click", function () {
   //empties the div
   savedArticles.empty();
   //empties the array and resets the localstorage
+  savedNewsArray = [];
   localStorage.removeItem("savedArticles", []);
 });
 $("#category").on("change", getCategory);
