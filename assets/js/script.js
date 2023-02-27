@@ -398,90 +398,84 @@ $("#clearNewsSavesButton").on("click", function () {
 
 $("#category").on("change", getCategory);
 
-//Thomas' codeBase
-// var mapKey =
-//   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
-// var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
-// var tileTL = tileFetchUrl + "426/776" + mapKey;
-// var tileTR = tileFetchUrl + "427/776" + mapKey;
-// var tileBL = tileFetchUrl + "426/777" + mapKey;
-// var tileBR = tileFetchUrl + "427/777" + mapKey;
-// var topRowEl = document.querySelector("#topRow");
-// var bottomRowEl = document.querySelector("#bottomRow");
-// var mapContainerEl = document.querySelector("#map-containernumerodos");
-// var mapContainerEl = document.querySelector("#mapContainerPart2");
-// var trafficContainerEl = document.querySelector("#trafficContainer");
+// Thomas' codeBase
+var mapKey =
+  ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
+var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+var tileTL = tileFetchUrl + "426/776" + mapKey;
+var tileTR = tileFetchUrl + "427/776" + mapKey;
+var tileBL = tileFetchUrl + "426/777" + mapKey;
+var tileBR = tileFetchUrl + "427/777" + mapKey;
+var topRowEl = document.querySelector("#topRow");
+var bottomRowEl = document.querySelector("#bottomRow");
+var mapContainerEl = document.querySelector("#map-containernumerodos");
+var mapContainerEl = document.querySelector("#mapContainerPart2");
+var trafficContainerEl = document.querySelector("#trafficContainer");
 
-// var trafficFetchUrl =
-//   "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
-// var trafficTL = trafficFetchUrl + "426/776" + mapKey;
-// var trafficTR = trafficFetchUrl + "427/776" + mapKey;
-// var trafficBL = trafficFetchUrl + "426/777" + mapKey;
-// var trafficBR = trafficFetchUrl + "427/777" + mapKey;
+var trafficFetchUrl =
+  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
+var trafficTL = trafficFetchUrl + "426/776" + mapKey;
+var trafficTR = trafficFetchUrl + "427/776" + mapKey;
+var trafficBL = trafficFetchUrl + "426/777" + mapKey;
+var trafficBR = trafficFetchUrl + "427/777" + mapKey;
 
-// function fetchMapTile(tileUrl) {
-//   fetch(tileUrl)
-//     .then(function (response) {
-//       return response;
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       var mapTile = document.createElement("img");
-//       mapTile.setAttribute("src", data.url);
-//       mapContainerEl.appendChild(mapTile);
-//     });
-// }
-// fetchMapTile(tileTL);
-// fetchMapTile(tileTR);
-// fetchMapTile(tileBL);
-// fetchMapTile(tileBR);
+function fetchMapTile(tileUrl) {
+  fetch(tileUrl)
+    .then(function (response) {
+      return response;
+    })
+    .then(function (data) {
+      console.log(data);
+      var mapTile = document.createElement("img");
+      mapTile.setAttribute("src", data.url);
+      mapContainerEl.appendChild(mapTile);
+    });
+}
+fetchMapTile(tileTL);
+fetchMapTile(tileTR);
+fetchMapTile(tileBL);
+fetchMapTile(tileBR);
 
-// fetch(trafficTL)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficTL");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficTL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTL");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficTR)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficTR");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficTR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTR");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficBL)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficBL");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficBL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBL");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficBR)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficBR");
-//     mapContainerEl.appendChild(mapTile);
-//   });
-
-// fetchTile(tileTL);
-// fetchTile(tileTR);
-// fetchTile(tileBL);
-// fetchTile(tileBR);
-// dropdown;
+fetch(trafficBR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBR");
+    mapContainerEl.appendChild(mapTile);
+  });
