@@ -339,8 +339,20 @@ function printSavedResults(savedObj) {
   //takes passed object sets the innerHTML of savedCard
   savedCard.html(savedObj);
 
+  var sinlgeClearButton = $(
+    '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
+  );
+
+  savedCard.append(sinlgeClearButton);
   //appends savedCard to DOM
   savedArticles.append(savedCard);
+
+  savedArticles.css({
+    overflow: "scroll",
+    height: "500px",
+    "border-radius": "25px",
+    padding: "25px",
+  });
 }
 
 //gets the saved catergory from users last load/refresh
