@@ -41,3 +41,11 @@ The weather segment has features of:
 3 API calls
 Variable declaration area
 An event listener (onclick) that receives user input
+
+## developer.tomtom.com
+
+[tomtom.com](https://developer.tomtom.com/) allows pulls of map and traffic data worldwide. It tracks traffic flow rates and incident data in real time so that it can be displayed to a user.
+
+How we used the API was to pull in map tiles at a zoom level that allowed us to see all of denver and displayed them in a grid. Then we grabbed traffic flow data and displayed it over the top of the map to show flow rates on the major roads in the Denver area. The intention behind this was to give the user a good overview of the current traffic conditions of the Denver area to help plan their day.
+
+In all, the [tomtom.com](https://developer.tomtom.com/) API is a very useful tool for not just displaying maps, but traffic data and incident reports as well. While the mapping isn't intuitive as the API uses a zoom grid system that can be difficult to figure out, the API explorer more than makes up for it. Being able to test your URLs and experiment within the [tomtom.com](https://developer.tomtom.com/) website was extremely useful, not just with getting the correct tiles but also for learning how the API functions.
