@@ -221,7 +221,6 @@ fromLocalStore();
 renderCities();
 currentWeatherRequest("Denver");
 
-
 //end of Wesley's code
 
 //Michael's CodeBase (News Article Section)
@@ -444,6 +443,7 @@ function fetchMapTile(tileUrl) {
     });
 }
 
+//Sleep function to pause between functions to make sure they fully load. Credit to James Hibbard of site point.
 function sleep(milliseconds) {
   const date = Date.now();
   let currentDate = null;
@@ -452,7 +452,7 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
-//fetching the specific tiles of denver.
+//fetching the specific tiles of denver and waiting so that tiles load in the correct order.
 function fetchWholeMap() {
   fetchMapTile(tileTL);
   sleep(500);
@@ -475,12 +475,7 @@ function fetchWholeMap() {
 
 fetchWholeMap();
 
-// fetchMapTile(tileTL);
-// fetchMapTile(tileTR);
-// fetchMapTile(tileBL);
-// fetchMapTile(tileBR);
-
-//The next 4 functions call the traffic tiles and assign them classes to be displayed over the top of the map.
+//The next 9 functions call the traffic tiles and assign them classes to be displayed over the top of the map.
 fetch(trafficTL)
   .then(function (response) {
     return response;
