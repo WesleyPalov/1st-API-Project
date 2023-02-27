@@ -226,7 +226,7 @@ currentWeatherRequest("Denver");
 //Michael's CodeBase
 var newsArticles = $(".newsArticles");
 var savedArticles = $(".savedLinks");
-var savedNewsArray = [];
+var savedNewsArray = JSON.parse(localStorage.getItem("savedArticles")) || [];
 
 function getCategory() {
   var category = $("#category option:selected").val();
@@ -255,8 +255,12 @@ function getNewsApi(requestUrlNews) {
         var clickBtn = $(this);
         var savedArticle = clickBtn.parent().children().html();
         savedNewsArray.push(savedArticle);
-        localStorage.setItem("savedArticles", savedNewsArray);
+        localStorage.setItem("savedArticles", JSON.stringify(savedNewsArray));
       });
+
+      for (var i = 0; i < savedNewsArray.length; i++){
+        printSavedResults(savedNewsArray[i]);
+      }
     });
 }
 
