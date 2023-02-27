@@ -12,7 +12,7 @@ var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
 // storing local storage
-var locStor;
+var locStor = [];
 var currentDate = moment().format("L");
 $("#current-date").text(currentDate + " | ");
 // Get access to the OpenWeather API
@@ -186,7 +186,7 @@ function fromLocalStore() {
   if (arr) {
     locStor = JSON.parse(arr);
   } else {
-    locStor;
+    locstor = [];
   }
 }
 
@@ -197,6 +197,7 @@ function renderCities() {
     '<button class="btn btn-info city-btn cityButtons"  type="button">';
   var tempBut = "</button>";
   searchHistoryList.empty();
+
   for (let i = 0; i < locStor.length; i++) {
     var city = locStor[i];
     var finalTem = tempTop + city + tempBut;
@@ -220,13 +221,12 @@ fromLocalStore();
 renderCities();
 currentWeatherRequest("Denver");
 
-// end of Wesley's code
+//end of Wesley's code
 
-//Michael's codebase
-
+//Michael's CodeBase
 var newsArticles = $(".newsArticles");
-
-$("#category").on("change", getCategory);
+var savedArticles = $(".savedLinks");
+var savedNewsArray = [];
 
 function getCategory() {
   var category = $("#category option:selected").val();
@@ -250,6 +250,13 @@ function getNewsApi(requestUrlNews) {
       for (var i = 0; i < data.results.length; i++) {
         printResults(data.results[i]);
       }
+
+      $(".saveBtn").on("click", function () {
+        var clickBtn = $(this);
+        var savedArticle = clickBtn.parent().children().html();
+        savedNewsArray.push(savedArticle);
+        localStorage.setItem("savedArticles", savedNewsArray);
+      });
     });
 }
 
@@ -258,7 +265,7 @@ function printResults(resultObj) {
   newsCard.addClass("bg-light text-dark mb-3 p-3 newsCardStyle");
 
   var newsBody = $("<div></div>");
-  newsBody.addClass("news-body");
+  newsBody.addClass("newsBody");
   newsCard.append(newsBody);
 
   var yNewsBox = $("<div></div>");
@@ -282,7 +289,7 @@ function printResults(resultObj) {
   linkNewsArticle.addClass("readMoreStyle");
 
   var newSaveButton = $(
-    '<button class="iconButton" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
+    '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
   );
 
   bodyContentNews.append(linkNewsArticle);
@@ -311,6 +318,7 @@ $("#showSavesButton").on("click", function () {
   }
 });
 $("#clearNewsSavesButton").on("click", function () {});
+$("#category").on("change", getCategory);
 
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
 
