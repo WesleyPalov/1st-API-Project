@@ -223,80 +223,107 @@ currentWeatherRequest("Denver");
 
 //end of Wesley's code
 
-//Michael's CodeBase
+//Michael's CodeBase (News Article Section)
+//GLOBAL VARIBLES
 var newsArticles = $(".newsArticles");
 var savedArticles = $(".savedLinks");
-var savedNewsArray = [];
+var savedNewsArray = JSON.parse(localStorage.getItem("savedArticles")) || [];
+var showingSave = 0;
+
+//FUNCTIONS
 
 function getCategory() {
-  var category = $("#category option:selected").val();
+  var category = $("#category option:selected").val(); //Grabs user's selection
+  //var set to api's url and attaches the users option to select type of news
   var requestUrlNews =
     "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=" +
     category;
+  //saves selected category to local storage
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
+  //passes the custom url to getNewsApi Function
   getNewsApi(requestUrlNews);
 }
 
 function getNewsApi(requestUrlNews) {
-  fetch(requestUrlNews)
+  fetch(requestUrlNews) // takes passed url and calls a response to news server
     .then(function (response) {
+      //sets response to array
       return response.json();
     })
     .then(function (data) {
-      // console.log(data);
-
+      //empties the news article element
       newsArticles.empty();
 
+      //for loop to take the data and push to function printResults and calls it for based off the length of the data
       for (var i = 0; i < data.results.length; i++) {
         printResults(data.results[i]);
       }
 
+      // event lisenter method set to the savebtns in articles
       $(".saveBtn").on("click", function () {
+        //sets the btn to listen to specific article
         var clickBtn = $(this);
+        //sets to the inner html of each article
         var savedArticle = clickBtn.parent().children().html();
+        //pushes innerHTML to empty array
         savedNewsArray.push(savedArticle);
-        localStorage.setItem("savedArticles", savedNewsArray);
+        //saves new array to localstorage everytime  btn is pushed
+        localStorage.setItem("savedArticles", JSON.stringify(savedNewsArray));
       });
     });
 }
 
 function printResults(resultObj) {
+  //builds new div element
   var newsCard = $("<div></div>");
+  //sets class values to newly mad div
   newsCard.addClass("bg-light text-dark mb-3 p-3 newsCardStyle");
 
   var newsBody = $("<div></div>");
   newsBody.addClass("newsBody");
+  //appends newsBody to newsCard
   newsCard.append(newsBody);
 
   var yNewsBox = $("<div></div>");
   yNewsBox.addClass("yNewsBoxStyle");
   newsBody.append(yNewsBox);
 
+  //builds h3 element
   var newsTitle = $("<h3></h3>");
+  //sets h3 text to data title
   newsTitle.text(resultObj.title);
 
+  //builds p element
   var bodyContentNews = $("<p></p>");
+  //sets p text to string with depscription and date
   bodyContentNews.html(
-    "<strong>Date:</strong>" + resultObj.pubDate.split("", 3) + "<br/>"
-  );
-  bodyContentNews.html(
-    "<strong>Description: </strong>" + resultObj.description + " "
+    "<strong>Date:</strong>" +
+      resultObj.pubDate.slice(0, -8) + //removes the last 8 characters of the string
+      "<br/> <strong>Description: </strong>" +
+      resultObj.description +
+      " "
   );
 
+  //builds a tags
   var linkNewsArticle = $("<a></a>");
   linkNewsArticle.text("Read More...");
   linkNewsArticle.attr("href", resultObj.link);
   linkNewsArticle.addClass("readMoreStyle");
 
+  //builds the save btn and sets the icon
   var newSaveButton = $(
     '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
   );
 
+  //appends built custom div
   bodyContentNews.append(linkNewsArticle);
   yNewsBox.append(newsTitle, bodyContentNews);
   newsBody.append(yNewsBox, newSaveButton);
 
+  //appends built div to the DOM
   newsArticles.append(newsCard);
+
+  //sets a scrolling box for the news divs
   newsArticles.css({
     overflow: "scroll",
     height: "500px",
@@ -305,22 +332,71 @@ function printResults(resultObj) {
   });
 }
 
-var showingSave = 0;
+function printSavedResults(savedObj) {
+  var savedCard = $("<div></div>");
+  savedCard.addClass("bg-light text-dark mb-3 p-3 newsCardStyle");
+
+  //takes passed object sets the innerHTML of savedCard
+  savedCard.html(savedObj);
+
+  var sinlgeClearButton = $(
+    '<button class="iconButton" id="clearBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
+  );
+
+  savedCard.append(sinlgeClearButton);
+  //appends savedCard to DOM
+  savedArticles.append(savedCard);
+
+  savedArticles.css({
+    overflow: "scroll",
+    height: "500px",
+    "border-radius": "25px",
+    padding: "25px",
+  });
+}
+
+//gets the saved catergory from users last load/refresh
+getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
+
+//EVENT LISTNERS
+
 $("#showSavesButton").on("click", function () {
+  //if statement to check the global var
   if (showingSave === 0) {
-    $(".savedLinks").css("display", "block");
+    //stlyes the class object saved Articles if the value of showingSave is 0
+    savedArticles.css("display", "block");
     $("#clearNewsSavesButton").css("display", "flex");
     showingSave++;
   } else {
-    $(".savedLinks").css("display", "none");
+    //stlyes the class object saved Articles if the value of showingSave is 1
+    savedArticles.css("display", "none");
     $("#clearNewsSavesButton").css("display", "none");
     showingSave--;
   }
-});
-$("#clearNewsSavesButton").on("click", function () {});
-$("#category").on("change", getCategory);
 
-getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
+  if (showingSave === 1) {
+    newsArticles.css("display", "none");
+    $("#newsHeader h2").text("Saved Articles");
+  } else {
+    newsArticles.css("display", "block");
+    $("#newsHeader h2").text("News Articles");
+  }
+  savedArticles.empty();
+  //for to run for the length of global array and calls function printSavedResults
+  for (var i = 0; i < savedNewsArray.length; i++) {
+    printSavedResults(savedNewsArray[i]);
+  }
+});
+
+$("#clearNewsSavesButton").on("click", function () {
+  //empties the div
+  savedArticles.empty();
+  //empties the array and resets the localstorage
+  savedNewsArray = [];
+  localStorage.removeItem("savedArticles", []);
+});
+
+$("#category").on("change", getCategory);
 
 // Thomas' codeBase
 //base url and key for the tomtom api.
