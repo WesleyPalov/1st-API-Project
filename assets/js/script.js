@@ -12,7 +12,7 @@ var currentFeels = $("#current-feels");
 var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
 // storing local storage
-var locStor;
+var locStor = [];
 var currentDate = moment().format("L");
 $("#current-date").text(currentDate + " | ");
 // Get access to the OpenWeather API
@@ -197,6 +197,7 @@ function renderCities() {
     '<button class="btn btn-info city-btn cityButtons"  type="button">';
   var tempBut = "</button>";
   searchHistoryList.empty();
+
   for (let i = 0; i < locStor.length; i++) {
     var city = locStor[i];
     var finalTem = tempTop + city + tempBut;
@@ -220,13 +221,12 @@ fromLocalStore();
 renderCities();
 currentWeatherRequest("Denver");
 
-// end of Wesley's code
+//end of Wesley's code
 
-//Michael's codebase
-
+//Michael's CodeBase
 var newsArticles = $(".newsArticles");
-
-$("#category").on("change", getCategory);
+var savedArticles = $(".savedLinks");
+var savedNewsArray = [];
 
 function getCategory() {
   var category = $("#category option:selected").val();
@@ -250,6 +250,13 @@ function getNewsApi(requestUrlNews) {
       for (var i = 0; i < data.results.length; i++) {
         printResults(data.results[i]);
       }
+
+      $(".saveBtn").on("click", function () {
+        var clickBtn = $(this);
+        var savedArticle = clickBtn.parent().children().html();
+        savedNewsArray.push(savedArticle);
+        localStorage.setItem("savedArticles", savedNewsArray);
+      });
     });
 }
 
@@ -258,7 +265,7 @@ function printResults(resultObj) {
   newsCard.addClass("bg-light text-dark mb-3 p-3 newsCardStyle");
 
   var newsBody = $("<div></div>");
-  newsBody.addClass("news-body");
+  newsBody.addClass("newsBody");
   newsCard.append(newsBody);
 
   var yNewsBox = $("<div></div>");
@@ -282,7 +289,7 @@ function printResults(resultObj) {
   linkNewsArticle.addClass("readMoreStyle");
 
   var newSaveButton = $(
-    '<button class="iconButton" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
+    '<button class="iconButton saveBtn" type="Button"> <i class="fa-solid fa-floppy-disk insideButton"></i> </button>'
   );
 
   bodyContentNews.append(linkNewsArticle);
@@ -311,93 +318,88 @@ $("#showSavesButton").on("click", function () {
   }
 });
 $("#clearNewsSavesButton").on("click", function () {});
+$("#category").on("change", getCategory);
 
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
 
-//Thomas' codeBase
-// var mapKey =
-//   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
-// var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
-// var tileTL = tileFetchUrl + "426/776" + mapKey;
-// var tileTR = tileFetchUrl + "427/776" + mapKey;
-// var tileBL = tileFetchUrl + "426/777" + mapKey;
-// var tileBR = tileFetchUrl + "427/777" + mapKey;
-// var topRowEl = document.querySelector("#topRow");
-// var bottomRowEl = document.querySelector("#bottomRow");
-// var mapContainerEl = document.querySelector("#map-containernumerodos");
-// var mapContainerEl = document.querySelector("#mapContainerPart2");
-// var trafficContainerEl = document.querySelector("#trafficContainer");
+// Thomas' codeBase
+var mapKey =
+  ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
+var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+var tileTL = tileFetchUrl + "426/776" + mapKey;
+var tileTR = tileFetchUrl + "427/776" + mapKey;
+var tileBL = tileFetchUrl + "426/777" + mapKey;
+var tileBR = tileFetchUrl + "427/777" + mapKey;
+var topRowEl = document.querySelector("#topRow");
+var bottomRowEl = document.querySelector("#bottomRow");
+var mapContainerEl = document.querySelector("#map-containernumerodos");
+var mapContainerEl = document.querySelector("#mapContainerPart2");
+var trafficContainerEl = document.querySelector("#trafficContainer");
 
-// var trafficFetchUrl =
-//   "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
-// var trafficTL = trafficFetchUrl + "426/776" + mapKey;
-// var trafficTR = trafficFetchUrl + "427/776" + mapKey;
-// var trafficBL = trafficFetchUrl + "426/777" + mapKey;
-// var trafficBR = trafficFetchUrl + "427/777" + mapKey;
+var trafficFetchUrl =
+  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
+var trafficTL = trafficFetchUrl + "426/776" + mapKey;
+var trafficTR = trafficFetchUrl + "427/776" + mapKey;
+var trafficBL = trafficFetchUrl + "426/777" + mapKey;
+var trafficBR = trafficFetchUrl + "427/777" + mapKey;
 
-// function fetchMapTile(tileUrl) {
-//   fetch(tileUrl)
-//     .then(function (response) {
-//       return response;
-//     })
-//     .then(function (data) {
-//       console.log(data);
-//       var mapTile = document.createElement("img");
-//       mapTile.setAttribute("src", data.url);
-//       mapContainerEl.appendChild(mapTile);
-//     });
-// }
-// fetchMapTile(tileTL);
-// fetchMapTile(tileTR);
-// fetchMapTile(tileBL);
-// fetchMapTile(tileBR);
+function fetchMapTile(tileUrl) {
+  fetch(tileUrl)
+    .then(function (response) {
+      return response;
+    })
+    .then(function (data) {
+      console.log(data);
+      var mapTile = document.createElement("img");
+      mapTile.setAttribute("src", data.url);
+      mapContainerEl.appendChild(mapTile);
+    });
+}
+fetchMapTile(tileTL);
+fetchMapTile(tileTR);
+fetchMapTile(tileBL);
+fetchMapTile(tileBR);
 
-// fetch(trafficTL)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficTL");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficTL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTL");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficTR)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficTR");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficTR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTR");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficBL)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficBL");
-//     mapContainerEl.appendChild(mapTile);
-//   });
+fetch(trafficBL)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBL");
+    mapContainerEl.appendChild(mapTile);
+  });
 
-// fetch(trafficBR)
-//   .then(function (response) {
-//     return response;
-//   })
-//   .then(function (data) {
-//     var mapTile = document.createElement("img");
-//     mapTile.setAttribute("src", data.url);
-//     mapTile.classList.add("overlayTrafficBR");
-//     mapContainerEl.appendChild(mapTile);
-//   });
-
-// fetchTile(tileTL);
-// fetchTile(tileTR);
-// fetchTile(tileBL);
-// fetchTile(tileBR);
-// dropdown;
+fetch(trafficBR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBR");
+    mapContainerEl.appendChild(mapTile);
+  });
