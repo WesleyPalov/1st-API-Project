@@ -13,8 +13,8 @@ var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
 // storing local storage
 var locStor = [];
-var currentDate = moment().format("L");
-$("#current-date").text(currentDate + " | ");
+var currentDate = moment().format("dddd MMM Do");
+$("#current-date").text(currentDate);
 // Get access to the OpenWeather API
 var urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=";
 var APIkey = "5806b5e472a87f66457f7aa46221f33b";
@@ -65,8 +65,8 @@ function currentWeatherRequest(searchValue) {
       $("#todaysData").empty();
       todaysData.append(`
       <p class="mb-0" id="current-temp">Temperature: ${response.main.temp}&deg;F</p>
-      <p class="mb-0" id="current-humidity">Humidity: ${response.main.humidity}</p>
-      <p class="mb-0" id="current-wind-speed">Wind Speed: ${response.wind.speed}</p>
+      <p class="mb-0" id="current-humidity">Humidity: ${response.main.humidity}%</p>
+      <p class="mb-0" id="current-wind-speed">Wind Speed: ${response.wind.speed} MPH</p>
       <p class="mb-0" id="current-feels">Feels like: ${response.main.feels_like}&deg;F</p>
       `);
 
@@ -148,7 +148,7 @@ function currentWeatherRequest(searchValue) {
           var humForcast = response.list[i].main.humidity;
           var windForcast = response.list[i].wind.speed;
           var cardTemplate = $("<div>");
-          cardTemplate.addClass("col-2");
+          // cardTemplate.addClass("col-2");
           cardTemplate.append(`
             <div class="card">
                 <div class="card-body">
@@ -186,7 +186,7 @@ function fromLocalStore() {
   if (arr) {
     locStor = JSON.parse(arr);
   } else {
-    locStor = [];
+    locstor = [];
   }
 }
 
@@ -236,7 +236,7 @@ function getCategory() {
   var category = $("#category option:selected").val(); //Grabs user's selection
   //var set to api's url and attaches the users option to select type of news
   var requestUrlNews =
-    "https://newsdata.io/api/1/news?apikey=pub_177975100b458a5296d87e0ed7210ba464f97&country=us&category=" +
+    "https://newsdata.io/api/1/news?apikey=pub_17675a17f958f2718941958f957ad8ec3902a&country=us&category=" +
     category;
   //saves selected category to local storage
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
