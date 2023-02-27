@@ -230,8 +230,17 @@ var savedArticles = $(".savedLinks");
 var savedNewsArray = JSON.parse(localStorage.getItem("savedArticles")) || [];
 var showingSave = 0;
 var category = JSON.parse(localStorage.getItem("savedSelection")) || "";
+var loaderDiv = $(".loader");
 
 //FUNCTIONS
+
+function showLoader() {
+  loaderDiv.css("display", "block");
+}
+
+function hideLoader() {
+  loaderDiv.css("display", "none");
+}
 
 function getCategory() {
   category = $("#category option:selected").val(); //Grabs user's selection
@@ -239,7 +248,7 @@ function getCategory() {
   localStorage.setItem("savedSelection", JSON.stringify(savedSelection));
   //var set to api's url and attaches the users option to select type of news
   var requestUrlNews =
-    "https://newsdata.io/api/1/news?apikey=pub_1779788a92e2df5eda746f4b28c993bb9c4cc&country=us&category=" +
+    "https://newsdata.io/api/1/news?apikey=pub_17966acc85fe06bcf6f0e0cb16b974cbaeda6&country=us&category=" +
     category;
   //saves selected category to local storage
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
@@ -248,6 +257,8 @@ function getCategory() {
 }
 
 function getNewsApi(requestUrlNews) {
+  newsArticles.empty();
+  showLoader();
   fetch(requestUrlNews) // takes passed url and calls a response to news server
     .then(function (response) {
       //sets response to array
@@ -255,10 +266,6 @@ function getNewsApi(requestUrlNews) {
       return response.json();
     })
     .then(function (data) {
-      //empties the news article element
-
-      newsArticles.empty();
-
       //for loop to take the data and push to function printResults and calls it for based off the length of the data
       for (var i = 0; i < data.results.length; i++) {
         printResults(data.results[i]);
@@ -275,6 +282,7 @@ function getNewsApi(requestUrlNews) {
         //saves new array to localstorage everytime  btn is pushed
         localStorage.setItem("savedArticles", JSON.stringify(savedNewsArray));
       });
+      hideLoader();
     });
 }
 

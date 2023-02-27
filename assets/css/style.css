@@ -368,6 +368,14 @@ main {
   flex-direction: column;
 }
 
+#loader {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 #mapContainer {
   background-color: var(--opBackground);
   border-radius: 10px;
