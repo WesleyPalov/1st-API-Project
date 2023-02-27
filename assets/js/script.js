@@ -399,19 +399,18 @@ $("#clearNewsSavesButton").on("click", function () {
 $("#category").on("change", getCategory);
 
 // Thomas' codeBase
+//base url and key for the tomtom api.
 var mapKey =
   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
 var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+//convenience variables to create URLs to fetch appropriate map tiles.
 var tileTL = tileFetchUrl + "426/776" + mapKey;
 var tileTR = tileFetchUrl + "427/776" + mapKey;
 var tileBL = tileFetchUrl + "426/777" + mapKey;
 var tileBR = tileFetchUrl + "427/777" + mapKey;
-var topRowEl = document.querySelector("#topRow");
-var bottomRowEl = document.querySelector("#bottomRow");
-var mapContainerEl = document.querySelector("#map-containernumerodos");
 var mapContainerEl = document.querySelector("#mapContainerPart2");
 var trafficContainerEl = document.querySelector("#trafficContainer");
-
+//convenience variables to create URLSs to fetch appropriate traffic tiles.
 var trafficFetchUrl =
   "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
 var trafficTL = trafficFetchUrl + "426/776" + mapKey;
@@ -419,6 +418,7 @@ var trafficTR = trafficFetchUrl + "427/776" + mapKey;
 var trafficBL = trafficFetchUrl + "426/777" + mapKey;
 var trafficBR = trafficFetchUrl + "427/777" + mapKey;
 
+//fetch function that grabs the specific tiles needed to display the Denver Metro area.
 function fetchMapTile(tileUrl) {
   fetch(tileUrl)
     .then(function (response) {
@@ -431,11 +431,14 @@ function fetchMapTile(tileUrl) {
       mapContainerEl.appendChild(mapTile);
     });
 }
+
+//fetching the specific tiles of denver.
 fetchMapTile(tileTL);
 fetchMapTile(tileTR);
 fetchMapTile(tileBL);
 fetchMapTile(tileBR);
 
+//The next 4 functions call the traffic tiles and assign them classes to be displayed over the top of the map.
 fetch(trafficTL)
   .then(function (response) {
     return response;
