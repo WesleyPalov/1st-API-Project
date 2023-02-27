@@ -402,21 +402,31 @@ $("#category").on("change", getCategory);
 //base url and key for the tomtom api.
 var mapKey =
   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
-var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
+var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/12/";
 //convenience variables to create URLs to fetch appropriate map tiles.
-var tileTL = tileFetchUrl + "426/776" + mapKey;
-var tileTR = tileFetchUrl + "427/776" + mapKey;
-var tileBL = tileFetchUrl + "426/777" + mapKey;
-var tileBR = tileFetchUrl + "427/777" + mapKey;
+var tileTL = tileFetchUrl + "852/1553" + mapKey;
+var tileTM = tileFetchUrl + "853/1553" + mapKey;
+var tileTR = tileFetchUrl + "854/1553" + mapKey;
+var tileML = tileFetchUrl + "852/1554" + mapKey;
+var tileMM = tileFetchUrl + "853/1554" + mapKey;
+var tileMR = tileFetchUrl + "854/1554" + mapKey;
+var tileBL = tileFetchUrl + "852/1555" + mapKey;
+var tileBM = tileFetchUrl + "853/1555" + mapKey;
+var tileBR = tileFetchUrl + "854/1555" + mapKey;
 var mapContainerEl = document.querySelector("#mapContainerPart2");
 var trafficContainerEl = document.querySelector("#trafficContainer");
 //convenience variables to create URLSs to fetch appropriate traffic tiles.
 var trafficFetchUrl =
-  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/11/";
-var trafficTL = trafficFetchUrl + "426/776" + mapKey;
-var trafficTR = trafficFetchUrl + "427/776" + mapKey;
-var trafficBL = trafficFetchUrl + "426/777" + mapKey;
-var trafficBR = trafficFetchUrl + "427/777" + mapKey;
+  "https://api.tomtom.com/traffic/map/4/tile/flow/relative0/12/";
+var trafficTL = trafficFetchUrl + "852/1553" + mapKey;
+var trafficTM = trafficFetchUrl + "853/1553" + mapKey;
+var trafficTR = trafficFetchUrl + "854/1553" + mapKey;
+var trafficML = trafficFetchUrl + "852/1554" + mapKey;
+var trafficMM = trafficFetchUrl + "853/1554" + mapKey;
+var trafficMR = trafficFetchUrl + "854/1554" + mapKey;
+var trafficBL = trafficFetchUrl + "852/1555" + mapKey;
+var trafficBM = trafficFetchUrl + "853/1555" + mapKey;
+var trafficBR = trafficFetchUrl + "854/1555" + mapKey;
 
 //fetch function that grabs the specific tiles needed to display the Denver Metro area.
 function fetchMapTile(tileUrl) {
@@ -432,11 +442,41 @@ function fetchMapTile(tileUrl) {
     });
 }
 
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+}
+
 //fetching the specific tiles of denver.
-fetchMapTile(tileTL);
-fetchMapTile(tileTR);
-fetchMapTile(tileBL);
-fetchMapTile(tileBR);
+function fetchWholeMap() {
+  fetchMapTile(tileTL);
+  sleep(500);
+  fetchMapTile(tileTM);
+  sleep(500);
+  fetchMapTile(tileTR);
+  sleep(500);
+  fetchMapTile(tileML);
+  sleep(500);
+  fetchMapTile(tileMM);
+  sleep(500);
+  fetchMapTile(tileMR);
+  sleep(500);
+  fetchMapTile(tileBL);
+  sleep(500);
+  fetchMapTile(tileBM);
+  sleep(500);
+  fetchMapTile(tileBR);
+}
+
+fetchWholeMap();
+
+// fetchMapTile(tileTL);
+// fetchMapTile(tileTR);
+// fetchMapTile(tileBL);
+// fetchMapTile(tileBR);
 
 //The next 4 functions call the traffic tiles and assign them classes to be displayed over the top of the map.
 fetch(trafficTL)
@@ -447,6 +487,17 @@ fetch(trafficTL)
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficTL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficTM)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficTM");
     mapContainerEl.appendChild(mapTile);
   });
 
@@ -461,6 +512,39 @@ fetch(trafficTR)
     mapContainerEl.appendChild(mapTile);
   });
 
+fetch(trafficML)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficML");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficMM)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficMM");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficMR)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficMR");
+    mapContainerEl.appendChild(mapTile);
+  });
+
 fetch(trafficBL)
   .then(function (response) {
     return response;
@@ -469,6 +553,17 @@ fetch(trafficBL)
     var mapTile = document.createElement("img");
     mapTile.setAttribute("src", data.url);
     mapTile.classList.add("overlayTrafficBL");
+    mapContainerEl.appendChild(mapTile);
+  });
+
+fetch(trafficBM)
+  .then(function (response) {
+    return response;
+  })
+  .then(function (data) {
+    var mapTile = document.createElement("img");
+    mapTile.setAttribute("src", data.url);
+    mapTile.classList.add("overlayTrafficBM");
     mapContainerEl.appendChild(mapTile);
   });
 
