@@ -323,6 +323,7 @@ $("#category").on("change", getCategory);
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
 
 // Thomas' codeBase
+//base url and key for the tomtom api.
 var mapKey =
   ".png?tileSize=256&view=Unified&language=NGT&key=s7oWBNNhwPyZDk4QnaRtZ9orhOFiKZOM";
 var tileFetchUrl = "https://api.tomtom.com/map/1/tile/basic/main/11/";
