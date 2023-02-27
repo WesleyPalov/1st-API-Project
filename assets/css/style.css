@@ -390,6 +390,14 @@ main {
   flex-direction: column;
 }
 
+#loader {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 #mapContainer {
   background-color: var(--opBackground);
   min-width: fit-content;
