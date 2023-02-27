@@ -40,7 +40,7 @@
           The Daily Brew
         </h1>
         <div id="headerTopRight">
-          <h1 id="todaysDate">
+          <h1 id="current-date">
             |
           </h1>
           <div id="settingsDropDown">
@@ -69,24 +69,20 @@
           <div id="weatherTop">
             <div id="weatherSearchBox" class="bg">
               <h5>Search for a city:</h5>
-              <form>
-                <div class="form-group input-group">
+              <form id="searchForm">
                   <input
                     type="text"
                     class="form-control"
                     id="search-city"
                     placeholder="Enter city here"
                   />
-                  <div class="input-group-append">
                     <button
                       class="btn btn-info"
-                      type="button"
+                      type="submit"
                       id="search-city-button"
                     >
                       <i class="fa fa-search"></i>
                     </button>
-                  </div>
-                </div>
               </form>
               <div id="saved-cities">
                 <ul id="search-history-list"></ul>
@@ -97,40 +93,20 @@
             </div>
 
             <div id="weather-today" class="bg">
-              <h2 id="current-city">
-                City Information
-                <i class="fa-solid fa-sun"></i>
-              </h2>
-              <div id="todaysData">
-                <p class="mb-0">Temperature: <span id="current-temp"></span></p>
-                <p class="mb-0">
-                  Humidity: <span id="current-humidity"></span>
-                </p>
-                <p class="mb-0">
-                  Wind Speed: <span id="current-wind-speed"></span>
-                </p>
-                <p class="mb-0">UV index: <span id="uv-index"></span></p>
-                <p class="mb-0">Feels like: <span id="current-feels"></span></p>
+              <div>
+                <h2 id="current-city">
+                  City Information
+                </h2>
+                <div id="todaysData">
+                </div>
               </div>
+              <div id="awd"><img src="" alt="" class="weatherGif"/></div>
             </div>
           </div>
 
           <div id="five-day-forecast" class="bg">
             <h2 id="five-day-forecast-header">5-Day Forecast</h2>
             <div id="cardContainer" class="row">
-              <!-- <div class="col-2">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="card-header">
-                      <h5 class="card-title">Date</h5>
-                      <i class="fa fa-sun fa-xl"></i>
-                    </div>
-                    <p class="card-text">Temp:</p>
-                    <p class="card-text">Humidity:</p>
-                    <p class="card-text">Wind:</p>
-                  </div>
-                </div>
-              </div> -->
             </div>
           </div>
         </section>
@@ -139,7 +115,7 @@
           <div id="newsHeader">
             <h2>News Articles</h2>
             <div id="newsSettings">
-              <div class="dropdown">
+              <div id="newsDropDown">
                 <select name="category" id="category" class="dropButton">
                   <option>World</option>
                   <option>Business</option>
@@ -154,11 +130,7 @@
                   <option>Top</option>
                 </select>
               </div>
-              <button
-                id="clearNewsSavesButton"
-                type="button"
-                class="iconButton"
-              >
+              <button id="clearNewsSavesButton" type="button" class="iconButton">
                 <i class="fa-solid fa-trash insideButton"></i>
               </button>
               <button id="showSavesButton" type="button" class="iconButton">
@@ -167,17 +139,14 @@
             </div>
           </div>
           <div id="articleDisplay">
-            <div class="savedLinks">a</div>
-            <div class="newsArticles">a</div>
+            <div class="savedLinks"></div>
+            <div class="newsArticles"></div>
           </div>
         </section>
 
         <section id="mapContainer">
           <h2>Traffic</h2>
-          <img
-            src="https://media.istockphoto.com/id/523164891/vector/play-mat-car-carpet-for-kids.jpg?s=612x612&w=0&k=20&c=EPp707YXW8eqbl7HMWVe4ZWnq1rleYJuwDIi9Jp1l90="
-            alt="yes"
-          />
+          
         </section>
       </main>
     </section>
