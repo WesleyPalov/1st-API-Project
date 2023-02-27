@@ -221,6 +221,7 @@ fromLocalStore();
 renderCities();
 currentWeatherRequest("Denver");
 
+
 //end of Wesley's code
 
 //Michael's CodeBase (News Article Section)
@@ -306,9 +307,9 @@ function printResults(resultObj) {
 
   //builds a tags
   var linkNewsArticle = $("<a></a>");
-  linkNewsArticle.text("Read More...");
+  linkNewsArticle.text("Read More");
   linkNewsArticle.attr("href", resultObj.link);
-  linkNewsArticle.addClass("readMoreStyle");
+  linkNewsArticle.addClass("btn-dark");
 
   //builds the save btn and sets the icon
   var newSaveButton = $(
@@ -326,6 +327,7 @@ function printResults(resultObj) {
   //sets a scrolling box for the news divs
   newsArticles.css({
     overflow: "scroll",
+    width: "1075px",
     height: "500px",
     "border-radius": "25px",
     padding: "25px",
