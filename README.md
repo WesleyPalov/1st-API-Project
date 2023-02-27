@@ -17,3 +17,27 @@ The intention behind this web application is to build an all-in-one stop for use
 How we used the API was just to pull in the top 10 current headlines worldwide and allow the user to select a specific genre of news articles. Ranging from anywhere from worldwide to food. We built in a saving feature to our website that will keep the given headline, depsctiprtion, and link of the given data of any artcile. The intention behind this to allow the usere to choose when they would like to read the article and have a quick place to access them for the future.
 
 Overall, [NewsData.io](https://newsdata.io/) is a great API with a free package that will work well for any small projects such as this one. You can even take it further and breakdown the ablity to choose news from specific countries. The documention on their website is really in-depth in how the API works. Showing many more features one could use to refine the users search of News! We would recommend this API for anyone in the future!
+
+## Summary for Weather segment
+
+HTML and CSS and Javascript documents create a weather application
+This project emphasizes the use of using an API call and JQuery to make dynamic changes to an HMTL document
+This project utilizes the use of appending HTML pages.
+AJAX (Asynchronous JavaScript And XML) has been used to communicate with server.
+
+This segment has the following features:.
+A Search bar for the city location
+A card that provides the current weather \*\* Location, Temp, Humidity, Wind Speed, Feels like, UV Index
+A Card that provides a five day forecast
+
+Psuedo code:
+Create a search input for customer input
+3 API calls for Current Weather, 5-day Forecast and UV Index
+3 Separate cards with search history, current weather and 5-day weather
+Local storage will save user history
+.empty() will clear old info before new info is populated
+
+The weather segment has features of:
+3 API calls
+Variable declaration area
+An event listener (onclick) that receives user input
