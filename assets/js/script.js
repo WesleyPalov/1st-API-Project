@@ -4,6 +4,7 @@ var searchCityInput = $("#search-city");
 var searchCityButton = $("#search-city-button");
 var clearHistoryButton = $("#clear-history");
 var currentCity = $("#current-city");
+
 var currentTemp = $("#current-temp");
 var currentHumidity = $("#current-humidity");
 var currentWindSpeed = $("#current-wind-speed");
@@ -15,8 +16,9 @@ var locStor = [];
 var currentDate = moment().format("L");
 $("#current-date").text("(" + currentDate + ")");
 // Get access to the OpenWeather API
-//var urlWeather =  "https://api.openweathermap.org/data/2.5/weather?q=";
 var APIkey = "5806b5e472a87f66457f7aa46221f33b"
+
+
 // Listenes to the click on search button
 $(document).on("submit", function (event){
     event.preventDefault();
