@@ -364,7 +364,6 @@ function printSavedResults(savedObj) {
   //takes passed object sets the innerHTML of savedCard
   savedCard.html(savedObj);
 
-  savedCard.append(sinlgeClearButton);
   //appends savedCard to DOM
   savedArticles.append(savedCard);
 
