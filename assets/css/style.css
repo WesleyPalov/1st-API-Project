@@ -364,6 +364,10 @@ main {
   align-items: center;
 }
 
+#newsTitle {
+  padding-left: 41%;
+}
+
 #newsSettings {
   display: flex;
   align-items: center;
@@ -427,6 +431,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  text-align: center;
   background-color: var(--opBackground);
   min-width: fit-content;
   border-radius: 10px;
@@ -505,5 +510,8 @@ main {
   }
   #mapContainer {
     display: none;
+  }
+  #newsTitle {
+    padding-left: 0%;
   }
 }
