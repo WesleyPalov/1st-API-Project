@@ -1,3 +1,9 @@
+$(window).on("load", function () {
+  // makes sure the whole site is loaded
+  $("#status").fadeOut(); // will first fade out the loading animation
+  $("#preloader").delay(350).fadeOut("slow"); // will fade out the white DIV that covers the website.
+  $("body").delay(350).css({ overflow: "visible" });
+});
 // Easy access to elements
 var searchHistoryList = $("#search-history-list");
 var searchCityInput = $("#search-city");
@@ -234,7 +240,7 @@ var newsArticles = $(".newsArticles");
 var savedArticles = $(".savedLinks");
 var savedNewsArray = JSON.parse(localStorage.getItem("savedArticles")) || [];
 var showingSave = 0;
-var category = JSON.parse(localStorage.getItem("savedSelection")) || "";
+var category = $("#category").val("World");
 var loaderDiv = $(".loader");
 
 //FUNCTIONS
@@ -253,7 +259,7 @@ function getCategory() {
   localStorage.setItem("savedSelection", JSON.stringify(savedSelection));
   //var set to api's url and attaches the users option to select type of news
   var requestUrlNews =
-    "https://newsdata.io/api/1/news?apikey=pub_17966acc85fe06bcf6f0e0cb16b974cbaeda6&country=us&category=" +
+    "https://newsdata.io/api/1/news?apikey=pub_1779788a92e2df5eda746f4b28c993bb9c4cc&country=us&category=" +
     category;
   //saves selected category to local storage
   localStorage.setItem("lastCategory", JSON.stringify(requestUrlNews));
@@ -358,11 +364,6 @@ function printSavedResults(savedObj) {
   //takes passed object sets the innerHTML of savedCard
   savedCard.html(savedObj);
 
-  var sinlgeClearButton = $(
-    '<button class="iconButton" id="clearBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
-  );
-
-  savedCard.append(sinlgeClearButton);
   //appends savedCard to DOM
   savedArticles.append(savedCard);
 
@@ -373,8 +374,6 @@ function printSavedResults(savedObj) {
     padding: "25px",
   });
 }
-
-getCategory();
 
 //gets the saved catergory from users last load/refresh
 getNewsApi(JSON.parse(localStorage.getItem("lastCategory")));
@@ -387,27 +386,29 @@ $("#showSavesButton").on("click", function () {
     //stlyes the class object saved Articles if the value of showingSave is 0
     savedArticles.css("display", "block");
     $("#clearNewsSavesButton").css("display", "flex");
+    newsArticles.css("display", "none");
+    $("#newsHeader h2").text("Saved Articles");
+    $("#newsDropDown").css("display", "none");
+
     showingSave++;
   } else {
     //stlyes the class object saved Articles if the value of showingSave is 1
     savedArticles.css("display", "none");
     $("#clearNewsSavesButton").css("display", "none");
+    newsArticles.css("display", "block");
+    $("#newsHeader h2").text("News Articles");
+    $("#newsDropDown").css("display", "block");
     showingSave--;
   }
 
-  if (showingSave === 1) {
-    newsArticles.css("display", "none");
-    $("#newsHeader h2").text("Saved Articles");
-  } else {
-    newsArticles.css("display", "block");
-    $("#newsHeader h2").text("News Articles");
-  }
   savedArticles.empty();
   //for to run for the length of global array and calls function printSavedResults
   for (var i = 0; i < savedNewsArray.length; i++) {
     printSavedResults(savedNewsArray[i]);
   }
 });
+
+getCategory();
 
 $("#clearNewsSavesButton").on("click", function () {
   //empties the div
