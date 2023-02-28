@@ -28,6 +28,33 @@ body {
   background: linear-gradient(0deg, black 0%, var(--dark4) 100%);
 }
 
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--dark4);
+  /* change if the mask should have another color then white */
+  z-index: 99;
+  /* makes sure it stays on top */
+}
+
+#status {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 50%;
+  /* centers the loading animation horizontally one the screen */
+  top: 50%;
+  /* centers the loading animation vertically one the screen */
+  background-image: url(../Images/143.gif);
+  /* path to your loading animation */
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: -100px 0 0 -100px;
+  /* is width and height divided by two */
+}
 .container-fluid {
   padding: 0;
 }
@@ -302,6 +329,7 @@ main {
   background-color: var(--cardBackground);
   border: 2px solid black;
   width: 11rem;
+  min-width: fit-content;
   border-radius: 5px;
   padding: 15px;
 }
@@ -377,7 +405,7 @@ main {
   border-radius: 10px;
 }
 
-.news-body {
+.newsBody {
   display: flex;
   justify-content: space-between;
 }
@@ -396,6 +424,9 @@ main {
 }
 
 #mapContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: var(--opBackground);
   min-width: fit-content;
   border-radius: 10px;
@@ -406,6 +437,7 @@ main {
   position: relative;
   height: 768px;
   width: 768px;
+  flex-grow: 1;
 }
 
 .overlayTrafficTL {
@@ -460,4 +492,18 @@ main {
   position: absolute;
   top: 512px;
   left: 512px;
+}
+
+/* change for git push */
+@media screen and (max-width: 992px) {
+  #weatherTop {
+    flex-direction: column;
+  }
+  #weatherSearchBox {
+    min-width: fit-content;
+    max-width: 100%;
+  }
+  #mapContainer {
+    display: none;
+  }
 }
