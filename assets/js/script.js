@@ -13,11 +13,14 @@ var UVindex = $("#uv-index");
 var fiveDays = $("#cardContainer");
 // storing local storage
 var locStor = [];
-var currentDate = moment().format("dddd MMM Do");
-$("#current-date").text(currentDate);
 // Get access to the OpenWeather API
 var urlWeather = "https://api.openweathermap.org/data/2.5/weather?q=";
 var APIkey = "5806b5e472a87f66457f7aa46221f33b";
+
+timeInterval = setInterval(function () {
+  var currentDate = moment().format("dddd MMM Do hh:mm a");
+  $("#current-date").text(currentDate);
+}, 6000);
 
 // Listens to the click on search button
 $("#searchForm").submit(function (event) {
@@ -143,8 +146,9 @@ function currentWeatherRequest(searchValue) {
       }).then(function (response) {
         // console.log(response.list);
         for (var i = 1; i < response.list.length; i += 8) {
-          var forecastDateString = moment(response.list[i].dt_txt).format("L");
-          console.log(forecastDateString)
+          var forecastDateString = moment(response.list[i].dt_txt).format(
+            "ddd Do"
+          );
           var tempForcast = response.list[i].main.temp;
           var humForcast = response.list[i].main.humidity;
           var windForcast = response.list[i].wind.speed;
@@ -322,7 +326,7 @@ function printResults(resultObj) {
   var linkNewsArticle = $("<a></a>");
   linkNewsArticle.text("Read More");
   linkNewsArticle.attr("href", resultObj.link);
-  linkNewsArticle.addClass("btn-dark");
+  // linkNewsArticle.addClass("btn-dark");
 
   //builds the save btn and sets the icon
   var newSaveButton = $(
@@ -340,7 +344,7 @@ function printResults(resultObj) {
   //sets a scrolling box for the news divs
   newsArticles.css({
     overflow: "scroll",
-    width: "1075px",
+    width: "100%",
     height: "500px",
     "border-radius": "25px",
     padding: "25px",
