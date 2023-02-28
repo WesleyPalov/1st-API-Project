@@ -388,6 +388,8 @@ $("#showSavesButton").on("click", function () {
     $("#clearNewsSavesButton").css("display", "flex");
     newsArticles.css("display", "none");
     $("#newsHeader h2").text("Saved Articles");
+    $("#newsDropDown").css("display", "none");
+
     showingSave++;
   } else {
     //stlyes the class object saved Articles if the value of showingSave is 1
@@ -395,6 +397,7 @@ $("#showSavesButton").on("click", function () {
     $("#clearNewsSavesButton").css("display", "none");
     newsArticles.css("display", "block");
     $("#newsHeader h2").text("News Articles");
+    $("#newsDropDown").css("display", "block");
     showingSave--;
   }
 
