@@ -32,34 +32,6 @@ body {
   padding: 0;
 }
 
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--dark4);
-  /* change if the mask should have another color then white */
-  z-index: 99;
-  /* makes sure it stays on top */
-}
-
-#status {
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  left: 50%;
-  /* centers the loading animation horizontally one the screen */
-  top: 50%;
-  /* centers the loading animation vertically one the screen */
-  background-image: url(https://i.gifer.com/YCZH.gif);
-  /* path to your loading animation */
-  background-repeat: no-repeat;
-  background-position: center;
-  margin: -100px 0 0 -100px;
-  /* is width and height divided by two */
-}
-
 header {
   display: flex;
   color: var(--dark1);
@@ -115,7 +87,6 @@ header {
   padding: 2px 20px 2px 20px;
   font-size: 16px;
 }
-
 .dropButton > option {
   display: none;
   position: absolute;
@@ -123,7 +94,6 @@ header {
   z-index: 1;
   color: black;
 }
-
 .dropButton option {
   padding: 10px 16px;
   width: 100%;
@@ -151,7 +121,6 @@ header {
 /* .dropDown:hover .dropDownContent {
   display: block;
 }
-
 .dropDown:hover .dropButton {
   background-color: var(--light3);
 } */
