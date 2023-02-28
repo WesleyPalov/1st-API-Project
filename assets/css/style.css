@@ -470,7 +470,7 @@ main {
   left: 512px;
 }
 
-/* Tablets - header changes color */
+/* change for git push */
 @media screen and (max-width: 992px) {
   #weatherTop {
     flex-direction: column;
