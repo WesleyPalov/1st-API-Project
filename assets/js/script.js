@@ -364,10 +364,6 @@ function printSavedResults(savedObj) {
   //takes passed object sets the innerHTML of savedCard
   savedCard.html(savedObj);
 
-  var sinlgeClearButton = $(
-    '<button class="iconButton" id="clearBtn" type="Button"> <i class="fa-solid fa-trash insideButton"></i> </button>'
-  );
-
   savedCard.append(sinlgeClearButton);
   //appends savedCard to DOM
   savedArticles.append(savedCard);
