@@ -144,6 +144,7 @@ function currentWeatherRequest(searchValue) {
         // console.log(response.list);
         for (var i = 1; i < response.list.length; i += 8) {
           var forecastDateString = moment(response.list[i].dt_txt).format("L");
+          console.log(forecastDateString)
           var tempForcast = response.list[i].main.temp;
           var humForcast = response.list[i].main.humidity;
           var windForcast = response.list[i].wind.speed;
